@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="64"
+   height="32"
+   viewBox="0 0 64 32"
+   version="1.1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <rect
+     style="display:inline;fill:#000000;stroke-width:2;stroke-linecap:round"
+     id="rect14"
+     width="62.887978"
+     height="32"
+     x="0.6804052"
+     y="0.10746578"
+     ry="16" />
+  <path
+     d="m 39.611787,21.110634 3.134765,-4.464844 -2.853515,-4.265625 h 2.074218 l 0.955079,1.464844 q 0.304687,0.46875 0.486328,0.837891 0.18164,0.363281 0.351562,0.720703 0.175781,-0.351563 0.363281,-0.720703 0.1875,-0.369141 0.492188,-0.837891 l 0.972656,-1.464844 h 2.027344 l -2.830078,4.212891 3.08789,4.517578 h -2.121093 l -1.212891,-1.828125 q -0.304687,-0.462891 -0.46875,-0.755859 -0.158203,-0.292969 -0.328125,-0.615235 -0.169922,0.316407 -0.333984,0.615235 -0.164063,0.292968 -0.47461,0.755859 l -1.253906,1.828125 z m 9.351562,0 v -8.730469 h 1.78711 v 7.248047 h 3.767578 v 1.482422 z"
+     fill="#ffffff"
+     style="font-weight:bold;font-size:12px;font-family:Inter;-inkscape-font-specification:'Inter Bold';stroke-width:2;stroke-linecap:round"/>
+  <path
+     style="stroke:#ffffff;stroke-width:1.05592;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+     fill="#ffffff"
+     d="m 26.745812,11.206824 h 9.692472"
+     id="path4" />
+  <path
+     style="fill:none;stroke:#ffffff;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     d="m 26.795714,13.338628 -0.856586,3.361431 h 11.262716 l -0.858237,-3.361431 z"
+     id="path18" />
+  <path
+     style="display:inline;fill:none;stroke:#ffffff;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     d="m 26.795714,16.700059 h 5.399745 v 4.318007 h -5.399745 z"
+     id="path19" />
+  <path
+     style="display:inline;stroke:#ffffff;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     d="m 36.343607,16.700059 v 4.318007"
+     fill="#FFFFFF" />
+</svg>

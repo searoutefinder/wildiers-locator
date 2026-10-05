@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="48"
+   height="32"
+   viewBox="0 0 48 32"
+   fill="none"
+   version="1.1"
+   id="svg7"
+   sodipodi:docname="store-marker-normal.svg"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showguides="true"
+     inkscape:zoom="9.886868"
+     inkscape:cx="31.253578"
+     inkscape:cy="19.065694"
+     inkscape:window-width="1920"
+     inkscape:window-height="1001"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg7">
+    <sodipodi:guide
+       position="12,32"
+       orientation="0,-1"
+       id="guide7"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="41.696041,11.0894"
+       orientation="0,-1"
+       id="guide8"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="58.9048,19.7273"
+       orientation="0,-1"
+       id="guide9"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="25.2102,10.3409"
+       orientation="0,-1"
+       id="guide10"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="25.2443,22.29545"
+       orientation="0,-1"
+       id="guide11"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="12.112021,14.088161"
+       orientation="1,0"
+       id="guide12"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="75,16"
+       orientation="1,0"
+       id="guide13"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="35.09706,0"
+       orientation="0,-1"
+       id="guide14"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="37.370745,18.299412"
+       orientation="1,0"
+       id="guide4"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="48.633461,16.086845"
+       orientation="1,0"
+       id="guide5"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="39.800766,18.768838"
+       orientation="0,-1"
+       id="guide6"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="38.227331,16.203065"
+       orientation="1,0"
+       id="guide15"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="47.775224,15.9667"
+       orientation="1,0"
+       id="guide16"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="45.146871,15.407407"
+       orientation="0,-1"
+       id="guide17"
+       inkscape:locked="false" />
+    <sodipodi:guide
+       position="43.627076,14.60281"
+       orientation="1,0"
+       id="guide18"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs7">
+    <filter
+       id="filter0_dd_10848_113408"
+       x="0"
+       y="0"
+       width="87"
+       height="56"
+       filterUnits="userSpaceOnUse"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0"
+         result="BackgroundImageFix"
+         id="feFlood3" />
+      <feColorMatrix
+         in="SourceAlpha"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+         result="hardAlpha"
+         id="feColorMatrix3" />
+      <feMorphology
+         radius="2"
+         operator="erode"
+         in="SourceAlpha"
+         result="effect1_dropShadow_10848_113408"
+         id="feMorphology3" />
+      <feOffset
+         dy="4"
+         id="feOffset3" />
+      <feGaussianBlur
+         stdDeviation="3"
+         id="feGaussianBlur3" />
+      <feComposite
+         in2="hardAlpha"
+         operator="out"
+         id="feComposite3" />
+      <feColorMatrix
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.03 0"
+         id="feColorMatrix4" />
+      <feBlend
+         mode="normal"
+         in2="BackgroundImageFix"
+         result="effect1_dropShadow_10848_113408"
+         id="feBlend4" />
+      <feColorMatrix
+         in="SourceAlpha"
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+         result="hardAlpha"
+         id="feColorMatrix5" />
+      <feMorphology
+         radius="4"
+         operator="erode"
+         in="SourceAlpha"
+         result="effect2_dropShadow_10848_113408"
+         id="feMorphology5" />
+      <feOffset
+         dy="12"
+         id="feOffset5" />
+      <feGaussianBlur
+         stdDeviation="8"
+         id="feGaussianBlur5" />
+      <feComposite
+         in2="hardAlpha"
+         operator="out"
+         id="feComposite5" />
+      <feColorMatrix
+         type="matrix"
+         values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.08 0"
+         id="feColorMatrix6" />
+      <feBlend
+         mode="normal"
+         in2="effect1_dropShadow_10848_113408"
+         result="effect2_dropShadow_10848_113408"
+         id="feBlend6" />
+      <feBlend
+         mode="normal"
+         in="SourceGraphic"
+         in2="effect2_dropShadow_10848_113408"
+         result="shape"
+         id="feBlend7" />
+    </filter>
+  </defs>
+  <rect
+     style="display:inline;fill:#000000;stroke-width:1.7473;stroke-linecap:round"
+     id="rect14"
+     width="48"
+     height="32"
+     x="-9.9920072e-16"
+     y="0.10746578"
+     ry="16" />
+  <text
+     xml:space="preserve"
+     style="font-size:16px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:none;fill:#000000;stroke-width:2;stroke-linecap:round"
+     x="20.112381"
+     y="21.50285"
+     id="text14"><tspan
+       sodipodi:role="line"
+       id="tspan14"
+       x="0"
+       y="0"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Inter;-inkscape-font-specification:'Inter Bold';fill:#ff0000">3</tspan></text>
+  <path
+     style="fill:#ffffff;stroke:#ffffff;stroke-width:1.05592;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+     d="m 28.745812,11.206824 h 9.692472"
+     id="path4" />
+  <path
+     style="fill:none;stroke:#ffffff;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     d="m 28.795714,13.338628 -0.856586,3.361431 h 11.262716 l -0.858237,-3.361431 z"
+     id="path18" />
+  <path
+     style="display:inline;fill:none;stroke:#ffffff;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     d="m 28.795714,16.700059 h 5.399745 v 4.318007 h -5.399745 z"
+     id="path19" />
+  <path
+     style="display:inline;fill:#ffffff;stroke:#ffffff;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     d="m 38.343607,16.700059 v 4.318007"
+     id="path20" />
+</svg>

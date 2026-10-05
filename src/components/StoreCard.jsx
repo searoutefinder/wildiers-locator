@@ -1,6 +1,4 @@
 import {
-  imgLeftTop,
-  imgLeftTopHighlighted,
   imgPinDrop,
   imgElectricBike,
   imgDirectionsBike,
@@ -30,28 +28,28 @@ import {
  * @property {boolean} [highlighted]  - selected/active state (green border + tinted bg + light ribbon)
  */
 
-const typeStyles = {
-  "E-bike": { bg: "bg-[#ebf2e0]", icon: imgElectricBike },
-  Sport: { bg: "bg-[#ffe6e6]", icon: imgDirectionsBike },
-  Cargo: { bg: "bg-[#e7e5e4]", icon: imgBikeScooter },
+const tagStyles = {
+  "ebike": { text: "E-bike", bg: "bg-[#ebf2e0]", icon: "/icons/material-symbols/electric_bike.svg" },
+  "sport": { text: "Sport", bg: "bg-[#ffe6e6]", icon: "/icons/material-symbols/directions_bike.svg" },
+  "cargo": { text: "Cargo", bg: "bg-[#e7e5e4]", icon: "/icons/material-symbols/bike_scooter.svg" },
 };
 
-function TypeBadge({ label }) {
-  const style = typeStyles[label] ?? typeStyles.Cargo;
+const TagsBadge = ({ tag }) => {
+  const style = tagStyles[tag] ?? tagStyles.cargo;
   return (
     <div className={`flex shrink-0 items-center justify-center gap-1 rounded-lg px-1 ${style.bg}`}>
       <img alt="" className="size-3" src={style.icon} />
-      <p className="whitespace-nowrap text-xs text-[#161412]">{label}</p>
+      <p className="whitespace-nowrap text-xs text-[#161412]">{style.text}</p>
     </div>
   );
 }
 
-function TypeBadgeRow({ types }) {
-  if (!types?.length) return null;
+const TagsBadgeRow = ({ tags }) => {
+  if (!tags?.length) return null;
   return (
     <div className="flex w-full flex-wrap items-start gap-1">
-      {types.map((t) => (
-        <TypeBadge key={t} label={t} />
+      {tags.map((t) => (
+        <TagsBadge key={t} tag={t} />
       ))}
     </div>
   );
@@ -62,7 +60,7 @@ function TypeBadgeRow({ types }) {
  * `compact` shrinks the ribbon (60px) and pulls the number in for the
  * small "province grid" card — the default/carousel cards use the 80px ribbon.
  */
-function NumberBadge({ number, highlighted, compact }) {
+const NumberBadge = ({ number, highlighted, compact }) => {
   return (
     <div className="absolute left-0 top-0">
       {/* Ferde sarok-háromszög */}
@@ -85,7 +83,7 @@ function NumberBadge({ number, highlighted, compact }) {
   );
 }
 
-function OpeningHours({ status, statusDetail }) {
+const OpeningHours = ({ status, statusDetail }) => {
   if (!status) return null;
   return (
     <div className="flex items-center gap-1 whitespace-nowrap">
@@ -102,14 +100,14 @@ function OpeningHours({ status, statusDetail }) {
   );
 }
 
-function Distance({ distanceKm }) {
+const Distance = ({ distanceKm }) => {
   if (typeof distanceKm !== "number") return null;
   return (
     <div className="flex shrink-0 gap-1">
       <div className="flex size-4 shrink-0 items-center justify-center rounded-full bg-[#d6e6c2]">
-        <img alt="" className="size-3" src={imgPinDrop} />
+        <img alt="" className="size-3" src="/icons/material-symbols/pin_drop.svg" />
       </div>
-      <p className="whitespace-nowrap text-xs text-[#161412]">{distanceKm} km from you</p>
+      <p className="whitespace-nowrap text-xs text-[#161412]">{distanceKm.toFixed(1)} km from you</p>
     </div>
   );
 }
@@ -121,24 +119,20 @@ function Distance({ distanceKm }) {
  * size="carousel" → fixed 180px card used in the mobile map's horizontal store carousel (no buttons)
  * size="small"    → compact card used in the province grid (no distance, corner expand button)
  */
-export default function StoreCard({ store, size = "default", onRoutePlan, onTestRide, onExpand }) {
+const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onExpand, onClick }) => {
   const isSmall = size === "small";
   const isCarousel = size === "carousel";
   const showDistance = !isSmall;
   const showActions = size === "default";
 
   const {
-    name,
-    thumbnail = imgStoreThumb1,
     thumbnailOverlay = imgStoreThumb2,
-    number,
-    xlStore,
-    distanceKm,
-    status,
-    statusDetail,
-    types = [],
+    distance_km,
     highlighted,
   } = store;
+
+  const xlStore = store.is_xl_store;
+  const name = store.name;
 
   const highlightedShadow = isCarousel
     ? "shadow-[0px_20px_24px_-4px_rgba(0,0,0,0.08),0px_8px_8px_-4px_rgba(0,0,0,0.03)]"
@@ -146,77 +140,119 @@ export default function StoreCard({ store, size = "default", onRoutePlan, onTest
 
   return (
     <div
-      className={`relative flex flex-col items-start gap-4 rounded-lg border-solid bg-white ${
-        isCarousel ? "w-[180px] shrink-0" : "w-full min-w-0"
-      } ${
-        highlighted
+      onClick={onClick}
+      className={`relative flex flex-col items-start gap-4 rounded-lg border-solid bg-white 
+        ${ isCarousel ? "w-[180px] shrink-0" : "w-full min-w-0" } 
+        ${ highlighted
           ? `border-2 border-[#99c066] bg-gradient-to-r from-[#ebf2e0]/50 to-[#ebf2e0]/50 ${highlightedShadow}`
           : "border border-[#d6d3d1]"
-      } ${isSmall || isCarousel ? "overflow-clip" : ""}`}
+        }
+        ${ isSmall || isCarousel ? "overflow-clip" : ""}` }
     >
       <div className={`relative flex w-full items-start overflow-clip rounded-t-md ${isSmall ? "h-[100px]" : "h-[130px]"}`}>
+        
+        {/* A kép */}
         <div className="relative h-full flex-1">
-          <img alt={name} className="absolute inset-0 size-full object-cover" src={thumbnail} />
-          {thumbnailOverlay && <img alt="" className="absolute inset-0 size-full object-cover" src={thumbnailOverlay} />}
+          <img alt={name} className="absolute inset-0 size-full object-cover" src={store.images[0]} />
+          {thumbnailOverlay && <img alt="" className="absolute inset-0 size-full object-cover" src={store.images[0]} />}
         </div>
-        <NumberBadge number={number} highlighted={highlighted} compact={isSmall} />
+
+        {/* A szám a bel felső sarokban */}
+        <NumberBadge 
+          number={store.id} 
+          highlighted={highlighted} 
+          compact={isSmall} 
+        />
+        
+        {/* Az üzlethez ugró gomb  */}
         {isSmall && (
           <button
             type="button"
             onClick={onExpand}
             aria-label="Bekijk winkel"
-            className="absolute right-[5px] top-[5px] flex size-7 items-center justify-center rounded-md border border-[#e7e5e4] bg-white"
+            className="
+              absolute
+              right-[5px]
+              top-[5px]
+              flex size-7
+              items-center
+              justify-center
+              rounded-md
+              border
+              border-[#e7e5e4]
+              bg-white
+            "
           >
-            <img alt="" className="size-4" src={imgArrowOutward} />
+            <img alt="" className="size-4" src="/icons/material-symbols/arrow_outward.svg" />
           </button>
         )}
       </div>
 
       <div className="flex w-full min-w-0 flex-col gap-4 px-4 pb-4">
         <div className="flex w-full min-w-0 flex-col gap-3">
+
+          {/* Név és XL Store Chip sor */}
           <div className="flex w-full min-w-0 gap-2 items-center">
             <a href="#" className="block max-w-full truncate text-sm font-medium text-[#161412] underline">
               {name}
             </a>
-            {xlStore && (
+            {xlStore && isSmall ? (
+              <div className="flex h-6 shrink-0 items-center justify-center gap-1 rounded-full bg-[#161412] px-2 py-0.5">
+                <img alt="" className="size-4" src="/icons/material-symbols/store-white.svg" />
+                <p className="whitespace-nowrap text-sm font-semibold text-white">                  
+                  XL
+                </p>
+              </div>
+            ) : xlStore ? (
               <div className="flex h-6 shrink-0 items-center justify-center gap-1 rounded-full bg-[#161412] px-2 py-0.5">
                 <p className="whitespace-nowrap text-sm font-semibold text-white">XL Store</p>
               </div>
-            )}
+            ) : ('')}            
           </div>
+
+          {/* Distance és Opening hours sor */}
           <div className="flex items-center gap-2">
-            {showDistance && <Distance distanceKm={distanceKm} />}
-            <OpeningHours status={status} statusDetail={statusDetail} />
+            {distance_km && <Distance distanceKm={distance_km} />}
+            <OpeningHours status={"open"} statusDetail={"till 18:00"} />
           </div>          
           
         </div>
 
-        <TypeBadgeRow types={types} />
+        {/* Tags sor  */}
+        <TagsBadgeRow tags={store.tags} />
+
+        {/* A sor a 2 gombbal: Route Planen, Plan je testrit */}
 
         {showActions && (
+
+          
           <div className="flex w-full items-start gap-2">
             <button
               type="button"
               onClick={onRoutePlan}
-              className="flex h-10 flex-1 items-center justify-center gap-2 rounded-md border border-[#e7e5e4] bg-white px-4 py-2"
+              className="cursor-pointer flex h-10 flex-1 items-center justify-center gap-2 rounded-md border border-[#e7e5e4] bg-white px-4 py-2"
             >
-              <img alt="" className="size-4" src={imgPinDropOutline} />
+              <img alt="" className="size-4" src="/icons/material-symbols/pin_drop.svg" />
               <span className="whitespace-nowrap text-base text-black">Route plannen</span>
             </button>
             <button
               type="button"
               onClick={onTestRide}
-              className="flex h-10 flex-1 items-center justify-center gap-2 rounded-md border border-[#99c066] bg-[#99c066] px-4 py-2"
+              className="cursor-pointer flex h-10 flex-1 items-center justify-center gap-2 rounded-md border border-[#99c066] bg-[#99c066] px-4 py-2"
             >
-              <img alt="" className="size-4" src={imgDirectionsBikeOutline} />
+              <img alt="" className="size-4" src="/icons/material-symbols/directions_bike.svg" />
               <span className="whitespace-nowrap text-base text-black">Plan je testrit</span>
             </button>
           </div>
+
         )}
+
       </div>
     </div>
   );
 }
+
+export default StoreCard;
 
 // Re-exported so other components (e.g. the "Toon alle winkels" button) can share the icon.
 export { imgStore };

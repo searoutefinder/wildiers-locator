@@ -1,37 +1,22 @@
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import {
-  imgMapBackground1,
-  imgMapBackground2,
   imgMobileMapBackground1,
   imgMobileMapBackground2,
   imgAdd2,
   imgRemove,
-  imgMapModalArrow,
   imgStoreIconDark,
   imgStoreIconLight,
 } from "../assets";
 import StoreCard from "./StoreCard";
 
-/**
- * Numbered store marker ("Store Icon" in Figma).
- * color: "black" (default) | "green" (the currently highlighted/selected store)
- */
-function StoreMarker({ number, color = "black", xl, style, onClick }) {
-  const isGreen = color === "green";
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      style={style}
-      className={`absolute flex h-8 items-center justify-center gap-1 rounded-full px-2 py-[3px] shadow-[0px_12px_8px_rgba(0,0,0,0.08),0px_4px_3px_rgba(0,0,0,0.03)] ${
-        isGreen ? "bg-[#99c066]" : "bg-[#161412]"
-      }`}
-    >
-      <p className={`text-base font-semibold ${isGreen ? "text-[#161412]" : "text-white"}`}>{number}</p>
-      <img alt="" className="size-4" src={isGreen ? imgStoreIconDark : imgStoreIconLight} />
-      {xl && <span className={`pt-0.5 text-xs font-semibold ${isGreen ? "text-[#161412]" : "text-white"}`}>XL</span>}
-    </button>
-  );
-}
+import mapboxgl from 'mapbox-gl';
+import 'mapbox-gl/dist/mapbox-gl.css';
+
+import StoreLayer from './Layers/StoreLayer';
+
+import { useStoreLocator } from "../context/StoreLocatorContext";
+
 
 /**
  * Zoom control, shared between the desktop and mobile map layouts.
@@ -78,29 +63,110 @@ function ZoomControls({ onZoomIn, onZoomOut, className, style }) {
  * Code Connect it to your own Marker/Popup components), dropping the
  * `imgMapBackground*` / `imgMobileMapBackground*` images once the live map renders.
  *
- * @param {{id:string|number, number:number, color?: 'black'|'green', xl?: boolean, xPct:number, yPct:number, storeId?: string|number}[]} markers - desktop marker layout (888×956 canvas)
+ * @param {{id:string|number, number:number, color?: 'black'|'green', xl?: boolean, xPct:number, yPct:number, storeId?: string|number}[]} stores - desktop marker layout (888×956 canvas)
  * @param {Object} [selectedStore] - store to show in the desktop floating detail card
  * @param {{id:string|number, number:number, color?: 'black'|'green', xl?: boolean, xPct:number, yPct:number, storeId?: string|number}[]} [mobileMarkers] - mobile marker layout (375×668 canvas) — the mobile mock uses a different map crop/zoom than desktop, so positions aren't shared
  * @param {Object[]} [carouselStores] - stores shown in the mobile horizontal carousel (set `highlighted` on the selected one)
  */
-export default function MapPanel({
-  markers = [],
-  selectedStore,
+export default function MapPanel ({
   mobileMarkers = [],
   carouselStores = [],
-  onMarkerClick,
   onZoomIn,
   onZoomOut,
 }) {
+
+  mapboxgl.accessToken    = import.meta.env.VITE_MAPBOX_TOKEN;
+
+  // Refs
+  const mapContainerRef   = useRef(null);
+  const mapRef            = useRef(null);
+  const map               = mapRef.current;
+
+  // Context
+  const { stores, selectedId, setSelectedId, resultBounds, initialLoad, setInitialLoad } = useStoreLocator();
+
+  // State
+  const [mapReady, setMapReady] = useState(false);  
+
+  // Refs
+
+  const popupNodeRef = useRef(document.createElement("div"));
+  const popupRef = useRef(null);  
+
+  useEffect(() => {
+    if(!map) { return; }
+    if(!resultBounds) { return; }
+    if(initialLoad) {
+      setInitialLoad(false);
+      return;
+    }
+    map.fitBounds(resultBounds, {
+      padding: 60,
+      maxZoom: 17,
+      duration: 1000,   // ms
+      essential: true,  // akkor is animál, ha a felhasználó csökkentett mozgást kért (prefers-reduced-motion)
+    });    
+    //console.log(resultBounds)
+  }, [resultBounds]);
+
+  useEffect(() => {
+    if(!selectedId) { return; }
+    popupRef.current = new mapboxgl.Popup({
+      offset: 20,
+      maxWidth: "360px",
+      closeOnClick: false,
+      className: "store-popup",
+    }).setDOMContent(popupNodeRef.current);
+
+    popupRef.current.on("close", () => setSelectedId(null));
+
+    return () => popupRef.current?.remove();
+  }, [selectedId]);
+
+  useEffect(() => {
+    
+    if (mapRef.current) return
+    if (!mapContainerRef.current) return
+
+    const map = new mapboxgl.Map({
+      container: mapContainerRef.current,
+      style: 'mapbox://styles/tamh/cmugnsq12003501s8cl0r2v8n',
+      bounds: [[2.51, 49.50],[6.41, 51.51]],
+      zoom: 9,
+    });
+
+    map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), 'top-right');
+    map.dragRotate.disable();
+    map.touchZoomRotate.disableRotation();
+    map.keyboard.disableRotation();
+
+    mapRef.current = map;
+
+    map.on('load', () => setMapReady(true));
+
+    return () => {
+      map.remove();
+      mapRef.current = null;
+      setMapReady(false);
+    };
+
+  }, [])
+
+
+
   return (
     <>
       {/* Desktop: inset map with numbered markers + floating detail card */}
       <div className="relative hidden h-full w-full overflow-clip rounded-lg lg:block">
-        <div className="absolute inset-0 bg-[#FF0000]">
-
+        <div ref={mapContainerRef} className="absolute inset-0 h-full">
+          {
+            mapReady && map && (
+              <>
+                <StoreLayer map={map} stores={stores}></StoreLayer>
+              </>          
+            )
+          }
         </div>
-
-        
       </div>
 
       {/* Mobile: full-bleed map + horizontal store-card carousel overlaid on the fade at its bottom edge */}
@@ -111,16 +177,7 @@ export default function MapPanel({
             <img alt="" className="absolute inset-0 size-full object-cover" src={imgMobileMapBackground2} />
           </div>
 
-          {mobileMarkers.map((m) => (
-            <StoreMarker
-              key={m.id}
-              number={m.number}
-              color={m.color}
-              xl={m.xl}
-              style={{ left: `${m.xPct}%`, top: `${m.yPct}%` }}
-              onClick={() => onMarkerClick?.(m)}
-            />
-          ))}
+
 
           <ZoomControls onZoomIn={onZoomIn} onZoomOut={onZoomOut} className="absolute right-5" style={{ top: "55.5%" }} />
         </div>

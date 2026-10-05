@@ -14,7 +14,8 @@ import StoreCard from "./StoreCard";
  *
  * @param {{name: string, count: number, stores: object[]}[]} provinces
  */
-export default function ProvinceAccordion({ provinces, defaultOpenProvince, onExpandStore }) {
+const ProvinceAccordion = ({ provinces, defaultOpenProvince, onExpandStore }) => {
+
   const [openProvince, setOpenProvince] = useState(defaultOpenProvince ?? provinces[0]?.name);
 
   return (
@@ -31,7 +32,7 @@ export default function ProvinceAccordion({ provinces, defaultOpenProvince, onEx
               <button
                 type="button"
                 onClick={() => setOpenProvince(null)}
-                className="flex w-full items-center justify-between"
+                className=" cursor-pointer flex w-full items-center justify-between"
                 aria-expanded="true"
               >
                 <span className="flex items-center gap-2">
@@ -40,13 +41,20 @@ export default function ProvinceAccordion({ provinces, defaultOpenProvince, onEx
                     {province.count}
                   </span>
                 </span>
-                <img alt="" className="size-5 rotate-180 lg:size-6" src={imgKeyboardArrowDown} />
+                <img alt="" className="size-5 rotate-180 lg:size-6" src="/icons/material-symbols/keyboard_arrow_down.svg" />
               </button>
 
               <div className="grid w-full grid-cols-2 gap-3 lg:flex lg:items-stretch lg:overflow-x-auto">
                 {province.stores.map((store) => (
-                  <div key={store.id} className="flex min-w-0 lg:min-w-[220px] lg:flex-1">
-                    <StoreCard store={store} size="small" onExpand={() => onExpandStore?.(store)} />
+                  <div 
+                    key={store.properties.id}
+                    className="flex min-w-0 lg:w-[220px] lg:shrink-0"
+                  >
+                    <StoreCard 
+                      store={store.properties} 
+                      size="small" 
+                      onExpand={() => onExpandStore?.(store)} 
+                    />
                   </div>
                 ))}
               </div>
@@ -60,13 +68,15 @@ export default function ProvinceAccordion({ provinces, defaultOpenProvince, onEx
             type="button"
             onClick={() => setOpenProvince(province.name)}
             aria-expanded="false"
-            className="flex h-10 w-full items-center justify-between rounded-md border border-[#e7e5e4] bg-[#fafaf9] px-3 py-2"
+            className="cursor-pointer flex h-10 w-full items-center justify-between rounded-md border border-[#e7e5e4] bg-[#fafaf9] px-3 py-2"
           >
             <span className="text-sm text-[#161412]">{province.name}</span>
-            <img alt="" className="size-5" src={imgKeyboardArrowDown} />
+            <img alt="" className="size-5" src="/icons/material-symbols/keyboard_arrow_down.svg" />
           </button>
         );
       })}
     </div>
   );
 }
+
+export default ProvinceAccordion;
