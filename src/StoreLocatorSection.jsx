@@ -1,5 +1,5 @@
 // Core
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { useStoreLocator } from "./context/StoreLocatorContext";
@@ -15,13 +15,37 @@ const StoreLocatorSection = ({}) => {
   
   // Context
 
-  const { data, stores, provinces, brands, specializations, selectedId, selectedBrands, setSelectedBrands, 
+  const { data, stores, provinces, brands, specializations, selectedId, setSelectedId, selectedBrands, setSelectedBrands, 
     selectedSpecializations, setSelectedSpecializations,
     location, setLocation, isFilterSet, setIsFilterSet, filteredFeatures, setOnlyXL, onlyXL } = useStoreLocator();
 
+  // Refs
+  const listRef = useRef(null);
+  const cardRefs = useRef(new Map());
+  const selectedFromListRef = useRef(false);
+
+  // Hooks
   useEffect(() => {
     setIsFilterSet(onlyXL || location != null || selectedBrands.length > 0 || selectedSpecializations.length > 0);
   }, [onlyXL, location, selectedBrands, selectedSpecializations]);
+
+  useEffect(() => {
+    // Kártyára kattintottak, nem görgetünk
+    if (selectedFromListRef.current) {
+      selectedFromListRef.current = false;
+      return;
+    }
+    if (selectedId == null) return;
+
+    const container = listRef.current;
+    const card = cardRefs.current.get(selectedId);
+    if (!container || !card) return;
+
+    container.scrollTo({
+      top: card.offsetTop,
+      behavior: "smooth",
+    });
+  }, [selectedId]);
 
   // Selection related
   const [selectedStoreId, setSelectedStoreId] = useState(null);
@@ -116,17 +140,35 @@ const StoreLocatorSection = ({}) => {
           
           {/* Sidebar */}
           <div className="flex w-[360px] h-[656px] shrink-0 flex-col gap-6 overflow-y-auto">
-            <div className="pr-2 store-list flex min-h-0 flex-col gap-3 overflow-y-auto">
+            <div ref={listRef} className="relative pr-2 store-list flex min-h-0 flex-col gap-3 overflow-y-auto">
               {
                 filteredFeatures?.features?.map((store) => (
+      <div
+        key={store.properties.id}
+        ref={(el) => {
+          if (el) cardRefs.current.set(store.properties.id, el);
+          else cardRefs.current.delete(store.properties.id);
+        }}
+      >                  
                   <StoreCard
                     key={store.properties.id}
                     store={{ ...store.properties, highlighted: store.properties.id === selectedStoreId }}
                     size="default"
-                    onRoutePlan={() => {}}
-                    onTestRide={() => {}}
-                    onClick={() => { alert("Tamas");}}
+                    onRoutePlan={(e) => {
+                      e.stopPropagation();
+                      console.log(e)
+                    }}
+                    onTestRide={(e) => {
+                      e.stopPropagation();
+                      console.log(e)
+                    }}
+                    onClick={(e, f) => { 
+                      console.log(f);
+                      setSelectedId(f.id);
+                      setSelectedStoreId(f.id);
+                    }}
                   />
+                  </div>
                 ))
               }
             </div>

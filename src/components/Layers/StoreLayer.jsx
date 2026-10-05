@@ -80,7 +80,7 @@ const StoreLayer = ({map, stores}) => {
           ],
           "icon-size": 1,
           "icon-allow-overlap": true,
-          "icon-ignore-placement": true,
+          "icon-ignore-placement": false,
           "icon-anchor": "center",          
         },
         "paint": {

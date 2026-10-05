@@ -1,5 +1,19 @@
 @import "tailwindcss";
 
+/* Mapbox related */
+.mapboxgl-popup.store-popup {
+  background: rgba(0, 0, 0, 0) !important;
+  border: none !important;  
+}
+.mapboxgl-popup-tip {
+  display: none !important;
+}
+.mapboxgl-popup-content {
+  padding: 0 !important;
+  box-shadow: unset !important;
+  background: rgba(0,0,0,0) !important;
+}
+
 .store-list::-webkit-scrollbar { width: 10px; }
 .store-list::-webkit-scrollbar-button {
   display: none !important;

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { createPortal } from "react-dom";
 import {
   imgMobileMapBackground1,
@@ -14,6 +14,7 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 import StoreLayer from './Layers/StoreLayer';
+import StorePopup from "./StorePopup/StorePopup";
 
 import { useStoreLocator } from "../context/StoreLocatorContext";
 
@@ -110,20 +111,6 @@ export default function MapPanel ({
   }, [resultBounds]);
 
   useEffect(() => {
-    if(!selectedId) { return; }
-    popupRef.current = new mapboxgl.Popup({
-      offset: 20,
-      maxWidth: "360px",
-      closeOnClick: false,
-      className: "store-popup",
-    }).setDOMContent(popupNodeRef.current);
-
-    popupRef.current.on("close", () => setSelectedId(null));
-
-    return () => popupRef.current?.remove();
-  }, [selectedId]);
-
-  useEffect(() => {
     
     if (mapRef.current) return
     if (!mapContainerRef.current) return
@@ -150,7 +137,7 @@ export default function MapPanel ({
       setMapReady(false);
     };
 
-  }, [])
+  }, []); 
 
 
 
@@ -163,10 +150,11 @@ export default function MapPanel ({
             mapReady && map && (
               <>
                 <StoreLayer map={map} stores={stores}></StoreLayer>
+                <StorePopup map={map} />
               </>          
             )
           }
-        </div>
+        </div>      
       </div>
 
       {/* Mobile: full-bleed map + horizontal store-card carousel overlaid on the fade at its bottom edge */}
