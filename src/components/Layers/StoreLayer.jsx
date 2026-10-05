@@ -3,7 +3,7 @@ import { useStoreLocator } from "../../context/StoreLocatorContext";
 
 const StoreLayer = ({map, stores}) => {
 
-  const { onlyXL, setSelectedId, filteredFeatures } = useStoreLocator();
+  const { onlyXL, setSelectedId, setSelectedStoreId, filteredFeatures } = useStoreLocator();
 
   // Handlers
   const onStoreClickHandler = (e) => {
@@ -34,6 +34,7 @@ const StoreLayer = ({map, stores}) => {
     ]);
     
     setSelectedId(id); 
+    setSelectedStoreId(id);
 
   };  
 

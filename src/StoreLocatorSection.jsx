@@ -17,7 +17,7 @@ const StoreLocatorSection = ({}) => {
 
   const { data, stores, provinces, brands, specializations, selectedId, setSelectedId, selectedBrands, setSelectedBrands, 
     selectedSpecializations, setSelectedSpecializations,
-    location, setLocation, isFilterSet, setIsFilterSet, filteredFeatures, setOnlyXL, onlyXL } = useStoreLocator();
+    location, setLocation, isFilterSet, setIsFilterSet, filteredFeatures, setOnlyXL, onlyXL, selectedStoreId, setSelectedStoreId } = useStoreLocator();
 
   // Refs
   const listRef = useRef(null);
@@ -48,8 +48,8 @@ const StoreLocatorSection = ({}) => {
   }, [selectedId]);
 
   // Selection related
-  const [selectedStoreId, setSelectedStoreId] = useState(null);
-  const [selectedStore, setSelectedStore] = useState(null);
+  //const [selectedStoreId, setSelectedStoreId] = useState(null);
+  //const [selectedStore, setSelectedStore] = useState(null);
 
   const onBrandChange = (a, options, c) => {
     if (options.length > 1) return;
@@ -139,17 +139,17 @@ const StoreLocatorSection = ({}) => {
         <div className="hidden w-full items-start gap-2 lg:flex">
           
           {/* Sidebar */}
-          <div className="flex w-[360px] h-[656px] shrink-0 flex-col gap-6 overflow-y-auto">
+          <div className="flex w-[360px] h-[556px] shrink-0 flex-col gap-6 overflow-y-auto">
             <div ref={listRef} className="relative pr-2 store-list flex min-h-0 flex-col gap-3 overflow-y-auto">
               {
                 filteredFeatures?.features?.map((store) => (
-      <div
-        key={store.properties.id}
-        ref={(el) => {
-          if (el) cardRefs.current.set(store.properties.id, el);
-          else cardRefs.current.delete(store.properties.id);
-        }}
-      >                  
+                <div
+                  key={store.properties.id}
+                  ref={(el) => {
+                    if (el) cardRefs.current.set(store.properties.id, el);
+                    else cardRefs.current.delete(store.properties.id);
+                  }}
+                >                  
                   <StoreCard
                     key={store.properties.id}
                     store={{ ...store.properties, highlighted: store.properties.id === selectedStoreId }}
@@ -216,7 +216,7 @@ const StoreLocatorSection = ({}) => {
           </div>
 
           {/* Map */}
-          <div className="min-w-0 flex-1 h-[656px]">
+          <div className="min-w-0 flex-1 h-[556px]">
             <MapPanel
               onZoomIn={() => {}}
               onZoomOut={() => {}}

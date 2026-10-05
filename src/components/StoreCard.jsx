@@ -131,6 +131,8 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onExpand,
     highlighted,
   } = store;
 
+  console.log(store)
+
   const xlStore = store.is_xl_store;
   const name = store.name;
 

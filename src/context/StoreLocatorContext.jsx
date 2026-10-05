@@ -14,6 +14,7 @@ export const StoreLocatorProvider = ({ data, children }) => {
 
   const [storesJSON, setStoresJSON] = useState({"type": "FeatureCollection", "features": []});    
   const [selectedId, setSelectedId] = useState(null);
+  const [selectedStoreId, setSelectedStoreId] = useState(null);
   const [location, setLocation] = useState(null);
   const [isFilterSet, setIsFilterSet] = useState(false);
   const [onlyXL, setOnlyXL] = useState(false);
@@ -171,10 +172,12 @@ export const StoreLocatorProvider = ({ data, children }) => {
     filteredFeatures,
     initialLoad, 
     setInitialLoad,
-    resultBounds
+    resultBounds,
+    selectedStoreId, 
+    setSelectedStoreId
   }), 
   [data, isFilterSet, selectedId, onlyXL, selectedBrands, selectedSpecializations, location, 
-    stores, provinces, brands, specializations, filteredFeatures, initialLoad, resultBounds]);
+    stores, provinces, brands, specializations, filteredFeatures, initialLoad, resultBounds, selectedStoreId]);
  
   return (
     <StoreLocatorContext.Provider value={value}>
