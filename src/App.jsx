@@ -145,6 +145,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/09/wildiers-kapellen-winkel-3.jpg"
       ],      
+      "url": "https://www.fietsenwildiers.be/winkels/e-bikes_kapellen/", 
       "brands": ["brand_10", "brand_2", "brand_5", "brand_7"]
 
     },
@@ -173,6 +174,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2024/05/Zwijndrecht020524-5387-scaled.jpg"
       ],    
+      "url": "https://www.fietsenwildiers.be/winkels/e-bikes_zwijndrecht/", 
       "brands": ["brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -200,6 +202,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/09/wildiers-geel-winkel-3.jpg"
       ],      
+      "url": "https://www.fietsenwildiers.be/winkels/e-bikes_geel/", 
       "brands": ["brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -227,6 +230,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/08/wildiers-hasselt-winkel-3.jpg"
       ],     
+      "url": "", 
       "brands": ["brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -254,6 +258,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/09/wildiers-lochristi-winkel-3.jpg"
       ],     
+      "url": "https://www.fietsenwildiers.be/winkels/e-bikes_malle/", 
       "brands": ["brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -281,6 +286,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/08/wildiers-winkel-keerbergen-1.jpg"
       ],    
+      "url": "", 
       "brands": ["brand_13", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -308,6 +314,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/08/wildiers-bekkevoort-winkel-6.jpg"
       ],   
+      "url": "", 
       "brands": ["brand_11", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -335,6 +342,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/08/wildiers-gent-winkel-5.jpg"
       ],      
+      "url": "", 
       "brands": ["brand_18", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -362,6 +370,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/08/wildiers-drongen-winkel-1.jpg"
       ],    
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -389,6 +398,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/09/wildiers-lommel-winkel-2.jpg"
       ],   
+      "url": "", 
       "brands": ["brand_13", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -416,6 +426,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/09/wildiers-poederlee-winkel-2.jpg"
       ],  
+      "url": "https://www.fietsenwildiers.be/winkels/ebikes_poederlee/", 
       "brands": ["brand_13", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -443,6 +454,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/09/wildiers-lochristi-winkel-3.jpg"
       ],     
+      "url": "", 
       "brands": ["brand_15", "brand_16", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -470,6 +482,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/09/wildiers-lochristi-winkel-3.jpg"
       ],    
+      "url": "https://www.fietsenwildiers.be/winkels/ebikes_oud-turnhout-steenweg-op-mol/", 
       "brands": ["brand_16", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -497,6 +510,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/08/wildiers-zandhoven-winkel-2.jpg"
       ],     
+      "url": "https://www.fietsenwildiers.be/winkels/e-bikes_zandhoven/", 
       "brands": ["brand_15", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -524,6 +538,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/09/wildiers-merksplas-winkel-1.jpg"
       ],    
+      "url": "https://www.fietsenwildiers.be/winkels/e-bikes_merksplas/", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -551,6 +566,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/09/Tessenderlo_FietsenWildiers_160525-9480-scaled.jpg"
       ],     
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -578,6 +594,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2025/02/Wildiers-Winkel-As-2-min.webp"
       ],     
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -605,6 +622,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/09/wildiers-lochristi-winkel-3.jpg"
       ],     
+      "url": "https://www.fietsenwildiers.be/winkels/e-bikes_olen/", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -632,6 +650,7 @@ const rawData = {
       "images": [
         'https://www.fietsenwildiers.be/wp-content/uploads/2024/08/wildiers-winkel-drongen-1.jpg'
       ],   
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -659,6 +678,7 @@ const rawData = {
       "images": [
         'https://www.fietsenwildiers.be/wp-content/uploads/2026/01/imgi_19_c87980_c1e0691c339047068d1e72e14956ffb7mv2.jpg'
       ],    
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -686,6 +706,7 @@ const rawData = {
       "images": [
         'https://www.fietsenwildiers.be/wp-content/uploads/2026/01/imgi_17_c87980_f25f21a961ef44ad98081dfb05dbc228mv2.jpg'
       ],    
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -713,6 +734,7 @@ const rawData = {
       "images": [
         'https://www.fietsenwildiers.be/wp-content/uploads/2026/01/imgi_19_c87980_120f3e204f0c4bafbf348f9a95c1cffbmv2.jpg'
       ],    
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -740,6 +762,7 @@ const rawData = {
       "images": [
         'https://www.fietsenwildiers.be/wp-content/uploads/2026/01/imgi_20_c87980_aab59723a8f64d3896a118ebf1abf0bdmv2.jpg'
       ],     
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -767,6 +790,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2026/01/imgi_23_c87980_80716ab75dc04bbf895193a111b1d0c9mv2.jpg"
       ],   
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -794,6 +818,7 @@ const rawData = {
       "images": [
         'https://www.fietsenwildiers.be/wp-content/uploads/2026/01/R-Blankenberge-imgi_20_c87980_9988b3bbe0cd43d0b954bc52a920946emv2.jpg'
       ],   
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -821,6 +846,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2026/01/imgi_25_c87980_52885424ff9440159ff03f56fa52feb6mv2.jpg"
       ],  
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -848,6 +874,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2026/01/imgi_23_c87980_80716ab75dc04bbf895193a111b1d0c9mv2.jpg"
       ],    
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -875,6 +902,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2026/01/imgi_23_6c6e4b_f38d1521baff4125a75d0d99cce79e86mv2.jpg"
       ],    
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -902,6 +930,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2026/01/imgi_22_c87980_35719506240241d9a4a6211064ba656cmv2.jpg"
       ],    
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -929,6 +958,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2026/01/imgi_18_c87980_7bf303848ec74c029ef61c88ffadea7bmv2.jpg"
       ],      
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -956,6 +986,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2026/01/imgi_23_c87980_dae25365b0d94928a83141c16c2691acmv2.jpg"
       ],   
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -983,6 +1014,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/08/wildiers-hasselt-winkel-1.jpg"
       ],     
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -1010,6 +1042,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/08/wildiers-hasselt-winkel-1.jpg"
       ],    
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     },
     {
@@ -1037,6 +1070,7 @@ const rawData = {
       "images": [
         "https://www.fietsenwildiers.be/wp-content/uploads/2023/08/wildiers-hasselt-winkel-1.jpg"
       ],    
+      "url": "", 
       "brands": ["brand_1", "brand_10", "brand_2", "brand_5", "brand_7"]
     }                                                                                               
   ]

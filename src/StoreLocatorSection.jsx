@@ -17,7 +17,8 @@ const StoreLocatorSection = ({}) => {
 
   const { data, stores, provinces, brands, specializations, selectedId, setSelectedId, selectedBrands, setSelectedBrands, 
     selectedSpecializations, setSelectedSpecializations,
-    location, setLocation, isFilterSet, setIsFilterSet, filteredFeatures, setOnlyXL, onlyXL, selectedStoreId, setSelectedStoreId } = useStoreLocator();
+    location, setLocation, isFilterSet, setIsFilterSet, filteredFeatures, setOnlyXL, onlyXL, selectedStoreId, setSelectedStoreId, 
+    selectedStore, setSelectedStore } = useStoreLocator();
 
   // Refs
   const listRef = useRef(null);
@@ -47,6 +48,16 @@ const StoreLocatorSection = ({}) => {
     });
   }, [selectedId]);
 
+  useEffect(() => {
+    if (selectedStore?.id == null || selectedStore?.source === "list") return;
+
+    const container = listRef.current;
+    const card = cardRefs.current.get(selectedStore.id);
+    if (!container || !card) return;
+
+    container.scrollTo({ top: card.offsetTop, behavior: "smooth" });
+  }, [selectedStore]);  
+
   // Selection related
   //const [selectedStoreId, setSelectedStoreId] = useState(null);
   //const [selectedStore, setSelectedStore] = useState(null);
@@ -67,7 +78,26 @@ const StoreLocatorSection = ({}) => {
 
   const onXlToggleChange = () => {
     setOnlyXL((v) => !v);
-  }  
+  }
+  
+  const onRoutePlan = (e, store) => {
+    e.stopPropagation();
+
+    const url = new URL('https://www.google.com/maps/dir/');
+    url.searchParams.set('api', '1');
+    url.searchParams.set('destination', `${store.coordinates[1]},${store.coordinates[0]}`);
+    url.searchParams.set('travelmode', 'driving');
+
+    window.open(url.toString(), '_blank', 'noopener');
+  }
+
+  const onStoreLink = (e, store) => {
+    e.stopPropagation();
+    if(store.url === "") { return; }
+    const url = new URL(store.url);
+
+    window.open(url.toString(), '_blank', 'noopener');
+  }
  
 
   // JSX
@@ -154,19 +184,18 @@ const StoreLocatorSection = ({}) => {
                     key={store.properties.id}
                     store={{ ...store.properties, highlighted: store.properties.id === selectedStoreId }}
                     size="default"
-                    onRoutePlan={(e) => {
-                      e.stopPropagation();
-                      console.log(e)
-                    }}
+                    onRoutePlan={onRoutePlan}
                     onTestRide={(e) => {
                       e.stopPropagation();
                       console.log(e)
                     }}
                     onClick={(e, f) => { 
                       console.log(f);
+                      setSelectedStore({"id": f.id, "source": "list"});
                       setSelectedId(f.id);
                       setSelectedStoreId(f.id);
                     }}
+                    onLink={onStoreLink}
                   />
                   </div>
                 ))

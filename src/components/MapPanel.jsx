@@ -84,7 +84,7 @@ export default function MapPanel ({
   const map               = mapRef.current;
 
   // Context
-  const { stores, selectedId, setSelectedId, resultBounds, initialLoad, setInitialLoad } = useStoreLocator();
+  const { stores, selectedStore, resultBounds, initialLoad, setInitialLoad } = useStoreLocator();
 
   // State
   const [mapReady, setMapReady] = useState(false);  
@@ -138,6 +138,20 @@ export default function MapPanel ({
     };
 
   }, []); 
+
+  useEffect(() => {
+    if (selectedStore?.id == null || selectedStore?.source !== "list") return;
+
+    const map = mapRef.current;
+    const feature = stores.features.find((f) => f.properties.id === selectedStore?.id);
+    if (!map || !feature) return;
+
+    map.flyTo({
+      center: feature.geometry.coordinates,
+      zoom: Math.max(map.getZoom(), 14),
+      essential: true,
+    });
+  }, [selectedStore]);  
 
 
 

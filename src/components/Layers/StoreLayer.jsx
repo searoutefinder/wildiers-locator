@@ -3,11 +3,12 @@ import { useStoreLocator } from "../../context/StoreLocatorContext";
 
 const StoreLayer = ({map, stores}) => {
 
-  const { onlyXL, setSelectedId, setSelectedStoreId, filteredFeatures } = useStoreLocator();
+  const { onlyXL, setSelectedId, selectedStoreId, setSelectedStoreId, filteredFeatures, setSelectedStore } = useStoreLocator();
 
   // Handlers
   const onStoreClickHandler = (e) => {
     const id = e.features[0].properties.id;
+    setSelectedStore({"id": id, "source": "map"});
     setSelected(id);    
   }
 
@@ -134,6 +135,13 @@ const StoreLayer = ({map, stores}) => {
     );*/
     map.getSource('stores-src').setData(filteredFeatures);
   }, [map, onlyXL, filteredFeatures]);
+
+  useEffect(() => {
+    if(!setSelectedStoreId) { return; }
+    console.clear();
+    console.log(selectedStoreId)
+    setSelected(selectedStoreId)
+  }, [selectedStoreId]);
 
   return null;
 }

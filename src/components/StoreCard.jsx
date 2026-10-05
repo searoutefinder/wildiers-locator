@@ -1,13 +1,5 @@
 import {
-  imgPinDrop,
-  imgElectricBike,
-  imgDirectionsBike,
-  imgBikeScooter,
-  imgPinDropOutline,
-  imgDirectionsBikeOutline,
   imgStore,
-  imgArrowOutward,
-  imgStoreThumb1,
   imgStoreThumb2,
 } from "../assets";
 
@@ -119,7 +111,7 @@ const Distance = ({ distanceKm }) => {
  * size="carousel" → fixed 180px card used in the mobile map's horizontal store carousel (no buttons)
  * size="small"    → compact card used in the province grid (no distance, corner expand button)
  */
-const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onExpand, onClick }) => {
+const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, onClick }) => {
   const isSmall = size === "small";
   const isCarousel = size === "carousel";
   const showDistance = !isSmall;
@@ -131,8 +123,6 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onExpand,
     highlighted,
   } = store;
 
-  console.log(store)
-
   const xlStore = store.is_xl_store;
   const name = store.name;
 
@@ -140,12 +130,20 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onExpand,
     ? "shadow-[0px_20px_24px_-4px_rgba(0,0,0,0.08),0px_8px_8px_-4px_rgba(0,0,0,0.03)]"
     : "shadow-[0_12px_16px_-4px_rgba(0,0,0,0.08),0_4px_6px_-2px_rgba(0,0,0,0.03)]";
 
-  const onclickHandler = (e) => {
+  const onClickHandler = (e) => {
     onClick(e, store);
+  }
+
+  const onRouteHandler = (e) => {
+    onRoutePlan(e, store);
+  } 
+  
+  const onLinkHandler = (e) => {
+    onLink(e, store);
   }
   return (
     <div
-      onClick={onclickHandler}
+      onClick={onClickHandler}
       className={`cursor-pointer relative flex flex-col items-start gap-4 rounded-lg border-solid bg-white 
         ${ isCarousel ? "w-[180px] shrink-0" : "w-full min-w-0" } 
         ${ highlighted
@@ -173,9 +171,10 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onExpand,
         {isSmall && (
           <button
             type="button"
-            onClick={onExpand}
+            onClick={onLinkHandler}
             aria-label="Bekijk winkel"
             className="
+            cursor-pointer
               absolute
               right-[5px]
               top-[5px]
@@ -198,9 +197,9 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onExpand,
 
           {/* Név és XL Store Chip sor */}
           <div className="flex w-full min-w-0 gap-2 items-center">
-            <a href="#" className="block max-w-full truncate text-sm font-medium text-[#161412] underline">
+            <button className="block max-w-full truncate text-sm font-medium text-[#161412] underline">
               {name}
-            </a>
+            </button>
             {xlStore && isSmall ? (
               <div className="flex h-6 shrink-0 items-center justify-center gap-1 rounded-full bg-[#161412] px-2 py-0.5">
                 <img alt="" className="size-4" src="/icons/material-symbols/store-white.svg" />
@@ -234,7 +233,7 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onExpand,
           <div className="flex w-full items-start gap-2">
             <button
               type="button"
-              onClick={onRoutePlan}
+              onClick={onRouteHandler}
               className="cursor-pointer flex h-10 flex-1 items-center justify-center gap-2 rounded-md border border-[#e7e5e4] bg-white px-4 py-2"
             >
               <img alt="" className="size-4" src="/icons/material-symbols/pin_drop.svg" />

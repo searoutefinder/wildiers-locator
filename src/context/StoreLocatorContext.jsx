@@ -12,7 +12,8 @@ const SPECIALIZATION_CHECKS = {
 
 export const StoreLocatorProvider = ({ data, children }) => {
 
-  const [storesJSON, setStoresJSON] = useState({"type": "FeatureCollection", "features": []});    
+  const [storesJSON, setStoresJSON] = useState({"type": "FeatureCollection", "features": []});  
+  const [selectedStore, setSelectedStore] = useState(null);  
   const [selectedId, setSelectedId] = useState(null);
   const [selectedStoreId, setSelectedStoreId] = useState(null);
   const [location, setLocation] = useState(null);
@@ -173,11 +174,13 @@ export const StoreLocatorProvider = ({ data, children }) => {
     initialLoad, 
     setInitialLoad,
     resultBounds,
+    selectedStore,
+    setSelectedStore,
     selectedStoreId, 
     setSelectedStoreId
   }), 
   [data, isFilterSet, selectedId, onlyXL, selectedBrands, selectedSpecializations, location, 
-    stores, provinces, brands, specializations, filteredFeatures, initialLoad, resultBounds, selectedStoreId]);
+    stores, provinces, brands, specializations, filteredFeatures, initialLoad, resultBounds, selectedStore, selectedStoreId]);
  
   return (
     <StoreLocatorContext.Provider value={value}>

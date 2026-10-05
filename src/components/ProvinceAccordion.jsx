@@ -18,6 +18,14 @@ const ProvinceAccordion = ({ provinces, defaultOpenProvince, onExpandStore }) =>
 
   const [openProvince, setOpenProvince] = useState(defaultOpenProvince ?? provinces[0]?.name);
 
+  const onStoreLink = (e, store) => {
+    e.stopPropagation();
+    if(store.url === "") { return; }
+    const url = new URL(store.url);
+
+    window.open(url.toString(), '_blank', 'noopener');
+  }
+
   return (
     <div className="flex w-full flex-col gap-4">
       {provinces.map((province) => {
@@ -53,7 +61,8 @@ const ProvinceAccordion = ({ provinces, defaultOpenProvince, onExpandStore }) =>
                     <StoreCard 
                       store={store.properties} 
                       size="small" 
-                      onExpand={() => onExpandStore?.(store)} 
+                      onLink={onStoreLink}
+                      onClick={() => {}}
                     />
                   </div>
                 ))}

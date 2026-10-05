@@ -45,12 +45,21 @@ const StorePopup = ({ map }) => {
     if (!popup.isOpen()) popup.addTo(map);
   }, [map, selectedStore]);
 
+  const onStoreLink = (e, store) => {    
+    e.stopPropagation();
+    if(store.url === "") { return; }
+    const url = new URL(store.url);
+
+    window.open(url.toString(), '_blank', 'noopener');
+  }
+
   if (!selectedStore) return null;
 
   return createPortal(
     <StoreCard 
       store={selectedStore.properties} 
       size="small" 
+      onLink={onStoreLink}      
     />,
     nodeRef.current
   );
