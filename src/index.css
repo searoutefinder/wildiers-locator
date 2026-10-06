@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+.store-map .mapboxgl-ctrl-bottom-left,
+.store-map .mapboxgl-ctrl-bottom-right {
+  bottom: var(--map-bottom-inset, 0px);
+}
+
+
 /* Mapbox related */
 .mapboxgl-popup.store-popup {
   background: rgba(0, 0, 0, 0) !important;

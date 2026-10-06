@@ -1,14 +1,7 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import { createPortal } from "react-dom";
-import {
-  imgMobileMapBackground1,
-  imgMobileMapBackground2,
-  imgAdd2,
-  imgRemove,
-  imgStoreIconDark,
-  imgStoreIconLight,
-} from "../assets";
 import StoreCard from "./StoreCard";
+
 
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -18,32 +11,6 @@ import StorePopup from "./StorePopup/StorePopup";
 
 import { useStoreLocator } from "../context/StoreLocatorContext";
 
-
-/**
- * Zoom control, shared between the desktop and mobile map layouts.
- */
-function ZoomControls({ onZoomIn, onZoomOut, className, style }) {
-  return (
-    <div style={style} className={`flex flex-col drop-shadow-[0px_12px_8px_rgba(0,0,0,0.08),0px_4px_3px_rgba(0,0,0,0.03)] ${className}`}>
-      <button
-        type="button"
-        onClick={onZoomIn}
-        aria-label="Zoom in"
-        className="flex size-9 items-center justify-center rounded-t-md border border-[#e7e5e4] bg-white"
-      >
-        <img alt="" className="size-4" src={imgAdd2} />
-      </button>
-      <button
-        type="button"
-        onClick={onZoomOut}
-        aria-label="Zoom uit"
-        className="flex size-9 items-center justify-center rounded-b-md border border-[#e7e5e4] bg-white"
-      >
-        <img alt="" className="size-4" src={imgRemove} />
-      </button>
-    </div>
-  );
-}
 
 /**
  * Map panel with store markers ("Map Box" in Figma).
@@ -69,12 +36,7 @@ function ZoomControls({ onZoomIn, onZoomOut, className, style }) {
  * @param {{id:string|number, number:number, color?: 'black'|'green', xl?: boolean, xPct:number, yPct:number, storeId?: string|number}[]} [mobileMarkers] - mobile marker layout (375×668 canvas) — the mobile mock uses a different map crop/zoom than desktop, so positions aren't shared
  * @param {Object[]} [carouselStores] - stores shown in the mobile horizontal carousel (set `highlighted` on the selected one)
  */
-export default function MapPanel ({
-  mobileMarkers = [],
-  carouselStores = [],
-  onZoomIn,
-  onZoomOut,
-}) {
+export default function MapPanel ({ bottomInset = 0 }) {
 
   mapboxgl.accessToken    = import.meta.env.VITE_MAPBOX_TOKEN;
 
@@ -102,12 +64,12 @@ export default function MapPanel ({
       return;
     }
     map.fitBounds(resultBounds, {
-      padding: 60,
+      padding: { top: 60, right: 60, left: 60, bottom: 60 + bottomInset },
       maxZoom: 17,
-      duration: 1000,   // ms
-      essential: true,  // akkor is animál, ha a felhasználó csökkentett mozgást kért (prefers-reduced-motion)
+      duration: 1000,
+      essential: true,
     });    
-    //console.log(resultBounds)
+    
   }, [resultBounds]);
 
   useEffect(() => {
@@ -146,11 +108,13 @@ export default function MapPanel ({
     const feature = stores.features.find((f) => f.properties.id === selectedStore?.id);
     if (!map || !feature) return;
 
-    map.flyTo({
-      center: feature.geometry.coordinates,
-      zoom: Math.max(map.getZoom(), 14),
-      essential: true,
-    });
+
+      map.flyTo({
+        center: feature.geometry.coordinates,
+        zoom: Math.max(map.getZoom(), 14),
+        offset: [0, -bottomInset / 2],
+        essential: true,
+      });      
   }, [selectedStore]);  
 
 
@@ -158,8 +122,8 @@ export default function MapPanel ({
   return (
     <>
       {/* Desktop: inset map with numbered markers + floating detail card */}
-      <div className="relative hidden h-full w-full overflow-clip rounded-lg lg:block">
-        <div ref={mapContainerRef} className="absolute inset-0 h-full">
+      <div className="store-map relative h-full w-full overflow-clip lg:rounded-lg" style={{ "--map-bottom-inset": `${bottomInset}px` }}>
+        <div ref={mapContainerRef} className="absolute inset-0 h-full" />
           {
             mapReady && map && (
               <>
@@ -167,32 +131,7 @@ export default function MapPanel ({
                 <StorePopup map={map} />
               </>          
             )
-          }
-        </div>      
-      </div>
-
-      {/* Mobile: full-bleed map + horizontal store-card carousel overlaid on the fade at its bottom edge */}
-      <div className="w-full lg:hidden">
-        <div className="relative aspect-[375/668] w-full overflow-clip">
-          <div className="absolute inset-0">
-            <img alt="" className="absolute inset-0 size-full object-cover" src={imgMobileMapBackground1} />
-            <img alt="" className="absolute inset-0 size-full object-cover" src={imgMobileMapBackground2} />
-          </div>
-
-
-
-          <ZoomControls onZoomIn={onZoomIn} onZoomOut={onZoomOut} className="absolute right-5" style={{ top: "55.5%" }} />
-        </div>
-
-        {carouselStores.length > 0 && (
-          <div className="relative -mt-[140px] flex flex-col bg-gradient-to-b from-transparent to-white px-4 pb-4 pt-10">
-            <div className="flex gap-3 overflow-x-auto pb-1">
-              {carouselStores.map((store) => (
-                <StoreCard key={store.id} store={store} size="carousel" />
-              ))}
-            </div>
-          </div>
-        )}
+          }    
       </div>
     </>
   );
