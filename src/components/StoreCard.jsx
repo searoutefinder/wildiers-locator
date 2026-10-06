@@ -59,7 +59,7 @@ const NumberBadge = ({ number, highlighted, compact }) => {
       <div
         className={`absolute left-0 top-0 h-0 w-0 border-r-transparent ${
           compact ? "border-t-[60px] border-r-[60px]" : "border-t-[80px] border-r-[80px]"
-        } ${highlighted ? "border-t-[#99c066]" : "border-t-[#3f6212]"}`}
+        } ${highlighted ? "border-t-[#99c066]" : "border-t-[#000]"}`}
       />
       {/* Szám */}
       <div
