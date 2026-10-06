@@ -246,7 +246,7 @@ const StoreLocatorSection = () => {
 
             {/* Map */}
             <div className="h-[556px] min-w-0 flex-1">
-              <MapPanel />
+              <MapPanel showPopup={true} />
             </div>
 
           </div>
@@ -257,7 +257,7 @@ const StoreLocatorSection = () => {
             <div className="-mx-5 grid h-[500px] grid-cols-1 overflow-hidden">
 
               <div className="min-h-0 min-w-0 [grid-area:1/1]">
-                <MapPanel bottomInset={CAROUSEL_INSET} />
+                <MapPanel bottomInset={CAROUSEL_INSET} showPopup={false} />
               </div>
 
               <div className="pointer-events-none z-10 min-w-0 self-end bg-gradient-to-b from-transparent to-white pb-4 pt-10 [grid-area:1/1]">

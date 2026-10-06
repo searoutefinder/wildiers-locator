@@ -36,7 +36,7 @@ import { useStoreLocator } from "../context/StoreLocatorContext";
  * @param {{id:string|number, number:number, color?: 'black'|'green', xl?: boolean, xPct:number, yPct:number, storeId?: string|number}[]} [mobileMarkers] - mobile marker layout (375×668 canvas) — the mobile mock uses a different map crop/zoom than desktop, so positions aren't shared
  * @param {Object[]} [carouselStores] - stores shown in the mobile horizontal carousel (set `highlighted` on the selected one)
  */
-export default function MapPanel ({ bottomInset = 0 }) {
+export default function MapPanel ({ bottomInset = 0, showPopup = true }) {
 
   mapboxgl.accessToken    = import.meta.env.VITE_MAPBOX_TOKEN;
 
@@ -128,7 +128,7 @@ export default function MapPanel ({ bottomInset = 0 }) {
             mapReady && map && (
               <>
                 <StoreLayer map={map} stores={stores}></StoreLayer>
-                <StorePopup map={map} />
+                {showPopup && <StorePopup map={map} />}
               </>          
             )
           }    
