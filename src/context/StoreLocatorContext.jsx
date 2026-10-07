@@ -1,7 +1,6 @@
 import { createContext, useContext, useMemo, useState, useEffect } from "react";
 import { sortByDistance } from "../utils/sortByDistance";
 import { getBounds } from "../utils/getBounds";
-import { getBrandIds } from "../utils/getBrands";
 
 const StoreLocatorContext = createContext(null);
 

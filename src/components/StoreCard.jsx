@@ -114,7 +114,6 @@ const Distance = ({ distanceKm }) => {
 const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, onClick }) => {
   const isSmall = size === "small";
   const isCarousel = size === "carousel";
-  const showDistance = !isSmall;
   const showActions = size === "default";
 
   const {
@@ -162,7 +161,7 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
 
         {/* A szám a bel felső sarokban */}
         <NumberBadge 
-          number={store.id} 
+          number={store.store_num_id} 
           highlighted={highlighted} 
           compact={isSmall} 
         />
