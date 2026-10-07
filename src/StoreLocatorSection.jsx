@@ -305,7 +305,7 @@ const StoreLocatorSection = () => {
       {/* Alle winkels per provincie */}
       <div className="flex flex-col gap-6">
         <h3 className="text-[32px] font-bold leading-[1.3] text-[#161412]">Alle Wildiers winkels per provincie</h3>
-        <ProvinceAccordion provinces={provinces} defaultOpenProvince="Antwerpen" />
+        <ProvinceAccordion provinces={provinces} />
       </div>
     </section>
   );

@@ -14,9 +14,9 @@ import StoreCard from "./StoreCard";
  *
  * @param {{name: string, count: number, stores: object[]}[]} provinces
  */
-const ProvinceAccordion = ({ provinces, defaultOpenProvince, onExpandStore }) => {
+const ProvinceAccordion = ({ provinces, onExpandStore }) => {
 
-  const [openProvince, setOpenProvince] = useState(defaultOpenProvince ?? provinces[0]?.name);
+  const [openProvince, setOpenProvince] = useState(null);
 
   const onStoreLink = (e, store) => {
     e.stopPropagation();
