@@ -55,10 +55,13 @@ async function fetchAllLiveItems(collectionId, token) {
 
   while (true) {
     const r = await fetch(
-      `https://api.webflow.com/v2/collections/${collectionId}/items/live?limit=100&offset=${offset}`,
+      `https://api.webflow.com/v2/collections/${collectionId}/items/live?limit=1000&offset=${offset}`,
       { headers: { Authorization: `Bearer ${token}`, accept: "application/json" } }
     );
-    if (!r.ok) throw new Error(`Webflow ${r.status}`);
+    if (!r.ok) {
+      const body = await r.text();
+      throw new Error(`Webflow ${r.status} (collection: ${collectionId}): ${body}`);
+    }
 
     const data = await r.json();
     items.push(...data.items);
@@ -69,9 +72,17 @@ async function fetchAllLiveItems(collectionId, token) {
 }
 
 export default async function handler(req, res) {
+  if (!process.env.WEBFLOW_STORES_COLLECTION_ID || !process.env.WEBFLOW_TOKEN) {
+    return res.status(500).json({
+      error: "Hiányzó környezeti változó",
+      WEBFLOW_COLLECTION_ID: Boolean(process.env.WEBFLOW_STORES_COLLECTION_ID),
+      WEBFLOW_TOKEN: Boolean(process.env.WEBFLOW_TOKEN),
+    });
+  }
+
   try {
     const items = await fetchAllLiveItems(
-      process.env.WEBFLOW_COLLECTION_ID,
+      process.env.WEBFLOW_STORES_COLLECTION_ID,
       process.env.WEBFLOW_TOKEN
     );
 
