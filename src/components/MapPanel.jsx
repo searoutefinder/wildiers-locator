@@ -59,10 +59,10 @@ export default function MapPanel ({ bottomInset = 0, showPopup = true }) {
   useEffect(() => {
     if(!map) { return; }
     if(!resultBounds) { return; }
-    if(initialLoad) {
+    /*if(initialLoad) {
       setInitialLoad(false);
       return;
-    }
+    }*/
     map.fitBounds(resultBounds, {
       padding: { top: 60, right: 60, left: 60, bottom: 60 + bottomInset },
       maxZoom: 17,
