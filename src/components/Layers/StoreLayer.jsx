@@ -14,7 +14,6 @@ const StoreLayer = ({map, stores}) => {
 
   const setSelected = (id) => {
 
-    // Change the artwork for the selected marker
     map.setLayoutProperty("stores-lyr", "icon-image", [
       "case",
         ["==", ["get", "id"], id ?? ""],
@@ -27,7 +26,6 @@ const StoreLayer = ({map, stores}) => {
         "store-marker-normal",
     ]);
 
-    // Bring the selected marker to the front
     map.setLayoutProperty("stores-lyr", "symbol-sort-key", [
       "case",
       ["==", ["get", "id"], id ?? ""], 1,
@@ -39,17 +37,13 @@ const StoreLayer = ({map, stores}) => {
 
   };  
 
-  {/* Hook that listens to the changes in the stores data that is passed to this layer component */}
+  // Hooks
   useEffect(() => {
 
     if (!map) return;
 
     if(!stores) return;
     
-    //console.log("Store layer effect");
-    //console.log(stores)
-
-    // 2. Source cleanup + hozzáadás
     if (map.getLayer('stores-lyr'))   map.removeLayer('stores-lyr');
     if (map.getSource('stores-src')) map.removeSource('stores-src');
 
@@ -58,13 +52,12 @@ const StoreLayer = ({map, stores}) => {
       data: stores,
     });
 
-    // Add the necessary symbol layer
     map.addLayer({
         "id": "stores-lyr",
         "type": "symbol",
         "source": "stores-src",
         "layout": {
-          "text-field": ["get", "id"],
+          "text-field": ["get", "store_num_id"],
           "text-size": 12,
           "text-offset": [
             "case", 
@@ -125,21 +118,13 @@ const StoreLayer = ({map, stores}) => {
     }
   }, [map, stores]);  
 
-  {/* Hook that listens to the changes of the onlyXL parameter in the context */}
   useEffect(() => {
     if (!map || !map.getLayer('stores-lyr')) return;
-
-    /*map.setFilter(
-        'stores-lyr',
-        onlyXL ? ['==', ['get', 'is_xl_store'], true] : null
-    );*/
     map.getSource('stores-src').setData(filteredFeatures);
   }, [map, onlyXL, filteredFeatures]);
 
   useEffect(() => {
     if(!setSelectedStoreId) { return; }
-    console.clear();
-    console.log(selectedStoreId)
     setSelected(selectedStoreId)
   }, [selectedStoreId]);
 
