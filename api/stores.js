@@ -59,7 +59,7 @@ export default async function handler(req, res) {
 
   try {
     const items = await fetchAllLiveItems(
-      process.env.WEBFLOW_COLLECTION_ID,
+      process.env.WEBFLOW_STORES_COLLECTION_ID,
       process.env.WEBFLOW_TOKEN
     );
 
