@@ -3,23 +3,6 @@ import {
   imgStoreThumb2,
 } from "../assets";
 
-/**
- * A single Wildiers store result.
- *
- * @typedef {Object} Store
- * @property {string|number} id
- * @property {string} name
- * @property {string} [thumbnail]
- * @property {string} [thumbnailOverlay]
- * @property {number} number          - marker number shown on the badge / map pin
- * @property {boolean} [xlStore]
- * @property {number} [distanceKm]
- * @property {'open'|'closed'} [status]
- * @property {string} [statusDetail]  - e.g. "tot 18:00" or "opent morgen om 09:00"
- * @property {string[]} [types]       - e.g. ["E-bike", "Sport", "Cargo"]
- * @property {boolean} [highlighted]  - selected/active state (green border + tinted bg + light ribbon)
- */
-
 const tagStyles = {
   "ebike": { text: "E-bike", bg: "bg-[#ebf2e0]", icon: "/icons/material-symbols/electric_bike.svg" },
   "sport": { text: "Sport", bg: "bg-[#ffe6e6]", icon: "/icons/material-symbols/directions_bike.svg" },
@@ -47,11 +30,6 @@ const TagsBadgeRow = ({ tags }) => {
   );
 }
 
-/**
- * Number-badge ribbon in the thumbnail's top-left corner.
- * `compact` shrinks the ribbon (60px) and pulls the number in for the
- * small "province grid" card — the default/carousel cards use the 80px ribbon.
- */
 const NumberBadge = ({ number, highlighted, compact }) => {
   return (
     <div className="absolute left-0 top-0">
@@ -104,13 +82,16 @@ const Distance = ({ distanceKm }) => {
   );
 }
 
-/**
- * Store card — matches the Figma "Store Card" component.
- *
- * size="default"  → wide card used in the sidebar list / map popup (full detail + buttons)
- * size="carousel" → fixed 180px card used in the mobile map's horizontal store carousel (no buttons)
- * size="small"    → compact card used in the province grid (no distance, corner expand button)
- */
+const getOpeningTimeForToday = (obj, timeZone = "Europe/Brussels") => {
+  if (!obj) return undefined;
+
+  const key = new Intl.DateTimeFormat("en-US", { weekday: "short", timeZone })
+    .format(new Date())
+    .toLowerCase();
+
+  return obj[key];
+}
+
 const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, onClick }) => {
   const isSmall = size === "small";
   const isCarousel = size === "carousel";
@@ -120,6 +101,7 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
     thumbnailOverlay = imgStoreThumb2,
     distance_km,
     highlighted,
+    opening_times
   } = store;
 
   const xlStore = store.is_xl_store;
@@ -153,20 +135,17 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
     >
       <div className={`relative flex w-full items-start overflow-clip rounded-t-md ${isSmall ? "h-[100px]" : "h-[130px]"}`}>
         
-        {/* A kép */}
         <div className="relative h-full flex-1">
           <img alt={name} className="absolute inset-0 size-full object-cover" src={store.images[0]} />
           {thumbnailOverlay && <img alt="" className="absolute inset-0 size-full object-cover" src={store.images[0]} />}
         </div>
 
-        {/* A szám a bel felső sarokban */}
         <NumberBadge 
           number={store.store_num_id} 
           highlighted={highlighted} 
           compact={isSmall} 
         />
         
-        {/* Az üzlethez ugró gomb  */}
         {isSmall && (
           <button
             type="button"
@@ -194,7 +173,6 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
       <div className="flex w-full min-w-0 flex-col gap-4 px-4 pb-4">
         <div className="flex w-full min-w-0 flex-col gap-3">
 
-          {/* Név és XL Store Chip sor */}
           <div className="flex w-full min-w-0 gap-2 items-center">
             <button className="block max-w-full truncate text-sm font-medium text-[#161412] underline">
               {name}
@@ -213,18 +191,17 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
             ) : ('')}            
           </div>
 
-          {/* Distance és Opening hours sor */}
           <div className="flex items-center gap-2">
             {distance_km && <Distance distanceKm={distance_km} />}
-            <OpeningHours status={"open"} statusDetail={"till 18:00"} />
+            <OpeningHours
+              status={getOpeningTimeForToday(opening_times) !== "gesloten" ? "open": "gesloten"}
+              statusDetail={getOpeningTimeForToday(opening_times)} 
+            />
           </div>          
           
         </div>
 
-        {/* Tags sor  */}
         <TagsBadgeRow tags={store.tags} />
-
-        {/* A sor a 2 gombbal: Route Planen, Plan je testrit */}
 
         {showActions && (
 
@@ -257,5 +234,4 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
 
 export default StoreCard;
 
-// Re-exported so other components (e.g. the "Toon alle winkels" button) can share the icon.
 export { imgStore };
