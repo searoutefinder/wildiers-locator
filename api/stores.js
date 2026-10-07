@@ -1,7 +1,7 @@
 // api/stores.js — Vercel serverless function
 // Lekéri a Webflow "stores" kollekció publikált elemeit, és a store locator saját sémájára alakítja.
 
-import { fetchAllLiveItems, isPublished, missingEnv } from "./webflow.js";
+import { fetchAllLiveItems, isPublished, missingEnv } from "./_lib/webflow.js";
 
 const DAYS = {
   mon: "openingsuren---monday",
@@ -34,7 +34,7 @@ export function mapStore(item) {
   return {
     id: item.id,
     name: fd.name ?? "",
-    type: null, // nincs megfelelő mező a Webflow kollekcióban
+    type: fd["contact-section-bike-types-display-sport"] ? "sportbike center" : "bike center",
     address: fd["contact-section-locatie"] ?? "",
     city: fd.city ?? "",
     postal: fd.postal ?? "",
