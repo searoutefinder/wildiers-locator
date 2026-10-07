@@ -66,7 +66,9 @@ export default async function handler(req, res) {
     const stores = items
       .filter(isPublished)
       .map(mapStore)
-      .filter((s) => s.coordinates); // koordináta nélkül nem tehető térképre
+      .filter((s) => s.coordinates) // koordináta nélkül nem tehető térképre
+      .sort((a, b) => a.name.trim().localeCompare(b.name.trim(), "nl", { sensitivity: "base" }))
+      .map((s, i) => ({ ...s, store_num_id: i + 1 })); // 1-től induló sorszám a rendezett sorrend szerint
 
     res.setHeader("Cache-Control", "s-maxage=600, stale-while-revalidate=3600");
     return res.status(200).json(stores);
