@@ -1,7 +1,7 @@
 // api/brands.js — Vercel serverless function
 // A Webflow Brands kollekcióból csak { id, name } objektumokat ad vissza, név szerint rendezve.
 
-import { fetchAllLiveItems, isPublished, missingEnv } from "./_lib/webflow.js";
+import { fetchAllLiveItems, isPublished, missingEnv } from "./webflow.js";
 
 export function mapBrand(item) {
   return {

@@ -1,7 +1,7 @@
 // api/stores.js — Vercel serverless function
 // Lekéri a Webflow "stores" kollekció publikált elemeit, és a store locator saját sémájára alakítja.
 
-import { fetchAllLiveItems, isPublished, missingEnv } from "./_lib/webflow.js";
+import { fetchAllLiveItems, isPublished, missingEnv } from "./webflow.js";
 
 const DAYS = {
   mon: "openingsuren---monday",
