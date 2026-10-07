@@ -1,6 +1,8 @@
 // api/stores.js — Vercel serverless function
 // Lekéri a Webflow "stores" kollekció publikált elemeit, és a store locator saját sémájára alakítja.
 
+import { fetchAllLiveItems, isPublished, missingEnv } from "./_lib/webflow.js";
+
 const DAYS = {
   mon: "openingsuren---monday",
   tue: "openingsuren---tuesday",
@@ -45,49 +47,24 @@ export function mapStore(item) {
     opening_times,
     images,
     url: fd.slug ? `${process.env.STORE_PAGE_BASE_URL ?? ""}/${fd.slug}` : "",
-    brands: fd.brands ?? [], // Webflow reference ID-k (a Brands kollekció elemei)
+    brands: fd.brands ?? [], // Webflow reference ID-k — megegyeznek az /api/brands "id" értékeivel
   };
 }
 
-async function fetchAllLiveItems(collectionId, token) {
-  const items = [];
-  let offset = 0;
-
-  while (true) {
-    const r = await fetch(
-      `https://api.webflow.com/v2/collections/${collectionId}/items/live?limit=1000&offset=${offset}`,
-      { headers: { Authorization: `Bearer ${token}`, accept: "application/json" } }
-    );
-    if (!r.ok) {
-      const body = await r.text();
-      throw new Error(`Webflow ${r.status} (collection: ${collectionId}): ${body}`);
-    }
-
-    const data = await r.json();
-    items.push(...data.items);
-    offset += data.items.length;
-    if (offset >= data.pagination.total || data.items.length === 0) break;
-  }
-  return items;
-}
-
 export default async function handler(req, res) {
-  if (!process.env.WEBFLOW_STORES_COLLECTION_ID || !process.env.WEBFLOW_TOKEN) {
-    return res.status(500).json({
-      error: "Hiányzó környezeti változó",
-      WEBFLOW_COLLECTION_ID: Boolean(process.env.WEBFLOW_STORES_COLLECTION_ID),
-      WEBFLOW_TOKEN: Boolean(process.env.WEBFLOW_TOKEN),
-    });
+  const missing = missingEnv("WEBFLOW_TOKEN", "WEBFLOW_COLLECTION_ID");
+  if (missing.length) {
+    return res.status(500).json({ error: "Hiányzó környezeti változó", missing });
   }
 
   try {
     const items = await fetchAllLiveItems(
-      process.env.WEBFLOW_STORES_COLLECTION_ID,
+      process.env.WEBFLOW_COLLECTION_ID,
       process.env.WEBFLOW_TOKEN
     );
 
     const stores = items
-      .filter((it) => !it.isArchived && !it.isDraft)
+      .filter(isPublished)
       .map(mapStore)
       .filter((s) => s.coordinates); // koordináta nélkül nem tehető térképre
 
