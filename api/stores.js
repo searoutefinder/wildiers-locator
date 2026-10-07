@@ -52,7 +52,7 @@ export function mapStore(item) {
 }
 
 export default async function handler(req, res) {
-  const missing = missingEnv("WEBFLOW_TOKEN", "WEBFLOW_COLLECTION_ID");
+  const missing = missingEnv("WEBFLOW_TOKEN", "WEBFLOW_STORES_COLLECTION_ID");
   if (missing.length) {
     return res.status(500).json({ error: "Hiányzó környezeti változó", missing });
   }
