@@ -79,7 +79,7 @@ const StoreLocatorSection = () => {
     setOnlyXL(false);
     setSelectedBrands([]);
     setSelectedSpecializations([]);
-    window.scrollTo({ top: 0 });
+    if (isDesktop) window.scrollTo({ top: 0 });
   };
 
   // Hooks
