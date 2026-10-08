@@ -263,13 +263,13 @@ const StoreLocatorSection = () => {
               <div className="pointer-events-none z-10 min-w-0 self-end bg-gradient-to-b from-transparent to-white pb-4 pt-10 [grid-area:1/1]">
                 <div
                   ref={carouselRef}
-                  className="pointer-events-auto relative flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  className="pointer-events-auto relative flex items-stretch snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                 >
                   {filteredFeatures?.features?.map((store) => (
                     <div
                       key={store.properties.id}
                       ref={registerCard(store.properties.id)}
-                      className="shrink-0 snap-center"
+                      className="flex shrink-0 snap-center"
                     >
                       <StoreCard
                         store={{ ...store.properties, highlighted: store.properties.id === selectedStoreId }}
