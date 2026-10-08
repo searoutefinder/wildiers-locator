@@ -221,7 +221,13 @@ const StoreLocatorSection = () => {
 
             {/* Sidebar */}
             <div className="flex h-[556px] w-[360px] shrink-0 flex-col gap-6 overflow-y-auto">
-              <div ref={listRef} className="store-list relative flex min-h-0 flex-col gap-3 overflow-y-auto pr-2">
+
+              <div ref={listRef} className="store-list relative flex min-h-0 flex-col gap-3 overflow-y-auto pr-2 [scrollbar-color:#99c066_transparent] [scrollbar-width:thin]
+            [&::-webkit-scrollbar]:w-1.5
+            [&::-webkit-scrollbar-track]:bg-transparent
+            [&::-webkit-scrollbar-thumb]:rounded-full
+            [&::-webkit-scrollbar-thumb]:bg-[#99c066]
+            [&::-webkit-scrollbar-thumb:hover]:bg-[#5c733d]">
                 {filteredFeatures?.features?.map((store) => (
                   <div key={store.properties.id} ref={registerCard(store.properties.id)}>
                     <StoreCard
