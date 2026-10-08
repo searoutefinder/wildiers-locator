@@ -28,7 +28,7 @@ export default function ResultsBar({ resultCount, locationLabel, onRemoveLocatio
       <div className="flex w-full items-center justify-between gap-4 lg:justify-normal">
         <div className="flex shrink-0 items-center gap-1.5">
           <img alt="" className="size-6" src="/icons/material-symbols/map_pin.svg" />
-          <p className="whitespace-nowrap text-base font-semibold text-[#161412]">{resultCount} {resultCount === 1 ? t("shopFoundTxt") : t("shopsFoundTxt")}</p>
+          <p className="whitespace-nowrap text-base font-semibold text-[#161412]">{resultCount} {resultCount <= 1 ? t("shopFoundTxt") : t("shopsFoundTxt")}</p>
         </div>
 
         <div className="hidden min-w-0 flex-1 items-center gap-8 lg:flex">
