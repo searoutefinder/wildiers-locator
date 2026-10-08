@@ -88,6 +88,10 @@ const StoreLocatorSection = () => {
   // Hooks
   useEffect(() => {
     setIsFilterSet(onlyXL || location != null || selectedBrands.length > 0 || selectedSpecializations.length > 0);
+
+    setSelectedStore(null);
+    setSelectedId(null);
+    setSelectedStoreId(null);    
   }, [onlyXL, location, selectedBrands, selectedSpecializations]);
 
   useEffect(() => {
