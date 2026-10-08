@@ -1,0 +1,27 @@
+{
+  "heading": "Vind een",
+  "headingHighlight": "fietswinkel",
+  "headingSuffix": "in jouw buurt",
+  "introPrefix": "Met meer dan",
+  "introSuffix": "fietswinkels in Vlaanderen is er altijd een Wildiers vlakbij. Zoek op locatie of ontdek winkels op basis van een merk of specialisatie, zoals sportfietsen of bakfietsen. Vergelijk verschillende fietsen, plan een gratis testrit en krijg persoonlijk advies van mensen die even wild zijn op fietsen als jij.",
+  "showAll": "Toon alle {count} winkels",
+  "provincesTitle": "Alle Wildiers winkels per provincie",
+  "loading": "Winkels laden…",
+  "loadError": "De winkels konden niet geladen worden. Probeer het later opnieuw.",
+  "locationBtnText": "Gebruik mijn locatie",
+  "locationSearchedText": "Locatie zoeken…",
+  "locationInputPlaceholder": "Zoek op stad, gemeente of postcode",
+  "brandPlaceholder": "Merk",
+  "specialtyPlaceholder": "Specialisatie",
+  "selectMessage": "Filter op merk of specialisatie beschikbaar in de showroom.",
+  "whatsAnXl": "Wat is een XL Store?",
+  "xlSwitchText": "Toon enkel",
+  "directionsBtnText": "Route plannen",
+  "testRideBtnText": "Plan je testrit",
+  "allStoresPerProvinceText": "Alle Wildiers winkels per provincie",
+  "storeOpen": "Open",
+  "storeClosed": "Gesloten",
+  "loadingStoresTxt": "Winkels laden…",
+  "storesCouldntLoadTxt": "De winkels konden niet geladen worden. Probeer het later opnieuw."
+
+}

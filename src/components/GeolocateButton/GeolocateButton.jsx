@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useStoreLocator } from "../../context/StoreLocatorContext";
 
+// Internationalization
+import { t } from "../../i18n";
+
 // Helpers
 
 // HTML5 Geolocation wrapped in a Promise
@@ -119,7 +122,7 @@ const GeolocateButton = ({ accessToken = import.meta.env.VITE_MAPBOX_TOKEN, clas
         src="/icons/material-symbols/my_location.svg" 
       />
       <span className="hidden lg:inline">
-        {loading ? "Locatie zoeken…" : "Gebruik mijn locatie"}
+        {loading ? "Locatie zoeken…" : t("locationBtnText")}
       </span>
     </button>    
   );  

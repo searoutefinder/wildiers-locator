@@ -3,6 +3,8 @@ import {
   imgStoreThumb2,
 } from "../assets";
 
+import { t } from '../i18n';
+
 const tagStyles = {
   "ebike": { text: "E-bike", bg: "bg-[#ebf2e0]", icon: "/icons/material-symbols/electric_bike.svg" },
   "sport": { text: "Sport", bg: "bg-[#ffe6e6]", icon: "/icons/material-symbols/directions_bike.svg" },
@@ -55,10 +57,11 @@ const NumberBadge = ({ number, highlighted, compact }) => {
 
 const OpeningHours = ({ status, statusDetail }) => {
   if (!status) return null;
+  
   return (
     <div className="flex items-center gap-1 whitespace-nowrap">
       <p className={`text-xs font-medium ${status === "open" ? "text-[#7a9a52]" : "text-[#c62828]"}`}>
-        {status === "open" ? "Open" : "Gesloten"}
+        {status === "open" ? t("storeOpen") : t("storeClosed")}
       </p>
       {statusDetail && (
         <>
@@ -194,7 +197,7 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
           <div className="flex items-center gap-2">
             {distance_km && <Distance distanceKm={distance_km} />}
             <OpeningHours
-              status={getOpeningTimeForToday(opening_times) !== "gesloten" ? "open": "gesloten"}
+              status={getOpeningTimeForToday(opening_times) !== "gesloten" ? "open" : "gesloten"}
               statusDetail={getOpeningTimeForToday(opening_times)} 
             />
           </div>          
@@ -213,7 +216,7 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
               className="cursor-pointer flex h-10 flex-1 items-center justify-center gap-2 rounded-md border border-[#e7e5e4] bg-white px-4 py-2"
             >
               <img alt="" className="size-4" src="/icons/material-symbols/pin_drop.svg" />
-              <span className="whitespace-nowrap text-base text-black">Route plannen</span>
+              <span className="whitespace-nowrap text-base text-black">{t("directionsBtnText")}</span>
             </button>
             <button
               type="button"
@@ -221,7 +224,7 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
               className="cursor-pointer flex h-10 flex-1 items-center justify-center gap-2 rounded-md border border-[#99c066] bg-[#99c066] px-4 py-2"
             >
               <img alt="" className="size-4" src="/icons/material-symbols/directions_bike.svg" />
-              <span className="whitespace-nowrap text-base text-black">Plan je testrit</span>
+              <span className="whitespace-nowrap text-base text-black">{t("testRideBtnText")}</span>
             </button>
           </div>
 

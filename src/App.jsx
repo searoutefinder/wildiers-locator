@@ -3,8 +3,11 @@ import StoreLocatorSection from "./StoreLocatorSection";
 import { StoreLocatorProvider } from "./context/StoreLocatorContext";
 import { fetchLocatorData } from "./api/fetchLocatorData";
 
+// Internationalization
+import { t } from './i18n'
+
 const App = () => {
-  
+
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
 
@@ -23,7 +26,7 @@ const App = () => {
   if (error) {
     return (
       <section className="mx-auto max-w-[1440px] px-5 py-10 lg:px-20 lg:py-16">
-        <p className="text-lg text-[#161412]">De winkels konden niet geladen worden. Probeer het later opnieuw.</p>
+        <p className="text-lg text-[#161412]">{t("storesCouldntLoadTxt")}</p>
       </section>
     );
   }
@@ -31,7 +34,7 @@ const App = () => {
   if (!data) {
     return (
       <section className="mx-auto max-w-[1440px] px-5 py-10 lg:px-20 lg:py-16">
-        <p className="text-lg text-[#161412]">Winkels laden…</p>
+        <p className="text-lg text-[#161412]">{t("loadingStoresTxt")}</p>
       </section>
     );
   }

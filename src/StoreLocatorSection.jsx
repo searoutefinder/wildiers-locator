@@ -12,6 +12,9 @@ import StoreCard from "./components/StoreCard";
 import MapPanel from "./components/MapPanel";
 import ProvinceAccordion from "./components/ProvinceAccordion";
 
+// Internationalization
+import { t } from "./i18n";
+
 const CAROUSEL_INSET = 170;
 
 const StoreLocatorSection = () => {
@@ -161,13 +164,10 @@ const StoreLocatorSection = () => {
       {/* Heading (same 48px/18px type scale on mobile and desktop) */}
       <div className="flex max-w-[768px] flex-col gap-2">
         <h2 className="text-[48px] font-bold leading-[1.2] text-[#161412]">
-          Vind een <span className="text-[#5c733d]">fietswinkel</span> in jouw buurt
+          {t("heading")} <span className="text-[#5c733d]">{t("headingHighlight")}</span> {t("headingSuffix")}          
         </h2>
         <p className="text-lg text-[#0c0a09]">
-          Met meer dan <span className="font-semibold">{stores.features.length}</span> fietswinkels in Vlaanderen is er altijd een
-          Wildiers vlakbij. Zoek op locatie of ontdek winkels op basis van een merk of specialisatie, zoals
-          sportfietsen of bakfietsen. Vergelijk verschillende fietsen, plan een gratis testrit en krijg
-          persoonlijk advies van mensen die even wild zijn op fietsen als jij.
+          {t("introPrefix")} <span className="font-semibold">{stores.features.length}</span> {t("introSuffix")}
         </p>
       </div>
 
@@ -304,7 +304,7 @@ const StoreLocatorSection = () => {
 
       {/* Alle winkels per provincie */}
       <div className="flex flex-col gap-6">
-        <h3 className="text-[32px] font-bold leading-[1.3] text-[#161412]">Alle Wildiers winkels per provincie</h3>
+        <h3 className="text-[32px] font-bold leading-[1.3] text-[#161412]">{t("allStoresPerProvinceText")}</h3>
         <ProvinceAccordion provinces={provinces} />
       </div>
     </section>
