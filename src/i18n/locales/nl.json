@@ -22,6 +22,11 @@
   "storeOpen": "Open",
   "storeClosed": "Gesloten",
   "loadingStoresTxt": "Winkels laden…",
-  "storesCouldntLoadTxt": "De winkels konden niet geladen worden. Probeer het later opnieuw."
+  "storesCouldntLoadTxt": "De winkels konden niet geladen worden. Probeer het later opnieuw.",
+  "searchAreaTxt": "Zoekgebied",
+  "resultsForTxt": "Resultaten voor",
+  "clearFiltersTxt": "Filters wissen",
+  "shopsFoundTxt": "winkels gevonden",
+  "shopFoundTxt": "winkel gevonden"  
 
 }

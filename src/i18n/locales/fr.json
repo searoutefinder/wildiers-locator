@@ -22,5 +22,10 @@
   "storeOpen": "Ouvert",
   "storeClosed": "Fermé",
   "loadingStoresTxt": "Chargement des magasins…",
-  "storesCouldntLoadTxt": "Les magasins n'ont pas pu être chargés. Veuillez réessayer plus tard."    
+  "storesCouldntLoadTxt": "Les magasins n'ont pas pu être chargés. Veuillez réessayer plus tard.",
+  "searchAreaTxt": "Zone de recherche",
+  "resultsForTxt": "Résultats pour",
+  "clearFiltersTxt": "Effacer les filtres",
+  "shopsFoundTxt": "magasins trouvés",
+  "shopFoundTxt": "magasin trouvé"
 }

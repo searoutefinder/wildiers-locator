@@ -22,5 +22,10 @@
   "storeOpen": "Open",
   "storeClosed": "Closed",
   "loadingStoresTxt": "Loading stores…",
-  "storesCouldntLoadTxt": "The stores could not be loaded. Please try again later."   
+  "storesCouldntLoadTxt": "The stores could not be loaded. Please try again later.",
+  "searchAreaTxt": "Search area",
+  "resultsForTxt": "Results for",
+  "clearFiltersTxt": "Clear filters",
+  "shopsFoundTxt": "shops found",
+  "shopFoundTxt": "shop found"     
 }
