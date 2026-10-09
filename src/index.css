@@ -27,3 +27,6 @@
   box-shadow: unset !important;
   background: rgba(0,0,0,0) !important;
 }
+.mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib {
+  display: none;
+}
