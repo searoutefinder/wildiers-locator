@@ -28,5 +28,5 @@
   background: rgba(0,0,0,0) !important;
 }
 .mapboxgl-ctrl-logo, .mapboxgl-ctrl-attrib {
-  display: none;
+  display: none !important;
 }
