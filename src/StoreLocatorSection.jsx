@@ -15,7 +15,7 @@ import ProvinceAccordion from "./components/ProvinceAccordion";
 // Internationalization
 import { t } from "./i18n";
 
-const CAROUSEL_INSET = 170;
+const CAROUSEL_INSET = 220;
 
 const StoreLocatorSection = () => {
 
@@ -68,7 +68,7 @@ const StoreLocatorSection = () => {
     } else {
       const c = carouselRef.current;
       if (!c) return;
-      // a kiválasztott kártyát középre görgeti
+
       c.scrollTo({
         left: card.offsetLeft - (c.clientWidth - card.offsetWidth) / 2,
         behavior: "smooth",

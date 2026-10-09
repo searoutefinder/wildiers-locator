@@ -31,7 +31,8 @@ const reverseGeocode = async ([lng, lat], { accessToken, language, signal }) => 
  
   const json = await res.json();
   const props = json.features?.[0]?.properties;
-  return props?.full_address ?? props?.name ?? null;
+  //console.log(`${props.context.place.name}, ${props.context.postcode.name}`)
+  return `${props.context.place.name}, ${props.context.postcode.name}`;
 };
  
 // Human-readable (Dutch) messages for the possible failures
@@ -85,6 +86,8 @@ export const useGeolocate = ({
     // 2. Address (best effort)
     let text = fallbackText;
     try {
+      let j = await reverseGeocode(coordinates, { accessToken, language, signal: controller.signal })
+      console.log(j)
       text = (await reverseGeocode(coordinates, { accessToken, language, signal: controller.signal })) ?? fallbackText;
     } catch (err) {
       if (controller.signal.aborted) return;
@@ -94,6 +97,7 @@ export const useGeolocate = ({
     if (controller.signal.aborted) return;
  
     // 3. Store in context
+    console.log(text)
     setLocation({ text, coordinates });
     setStatus("success");
   }, [accessToken, language, fallbackText, geolocationOptions, setLocation]);

@@ -127,7 +127,7 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
   }
   return (
     <div
-      onClick={onClickHandler}
+      onClick={isSmall ? onLinkHandler : onClickHandler}
       className={`cursor-pointer relative flex flex-col items-start gap-4 rounded-lg border-solid bg-white 
         ${ isCarousel ? "w-[180px] shrink-0" : "w-full min-w-0" } 
         ${ highlighted
@@ -149,7 +149,7 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
           compact={isSmall} 
         />
         
-        {isSmall && (
+
           <button
             type="button"
             onClick={onLinkHandler}
@@ -170,14 +170,17 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
           >
             <img alt="" className="size-4" src="/icons/material-symbols/arrow_outward.svg" />
           </button>
-        )}
+
       </div>
 
       <div className="flex w-full min-w-0 flex-col gap-4 px-4 pb-4">
         <div className="flex w-full min-w-0 flex-col gap-3">
 
           <div className="flex w-full min-w-0 gap-2 items-center">
-            <button className="block max-w-full truncate text-sm font-medium text-[#161412] underline">
+            <button
+              onClick={onLinkHandler} 
+              className="cursor-pointer block max-w-full truncate text-sm font-medium text-[#161412] underline"
+            >
               {name}
             </button>
             {xlStore && isSmall ? (

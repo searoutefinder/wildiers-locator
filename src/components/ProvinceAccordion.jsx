@@ -12,6 +12,7 @@ const ProvinceAccordion = ({ provinces }) => {
 
   const onStoreLink = (e, store) => {
     e.stopPropagation();
+    console.log(store)
     if(store.url === "") { return; }
     const url = new URL(store.url);
 
@@ -65,17 +66,9 @@ return (
                   style={{ overflow: "hidden" }}
                 >
                   {/* a padding a belső divre kerül, hogy a height animáció 0-ig tudjon menni */}
-                  <div className="grid w-full grid-cols-2 gap-3 pb-3 pt-2 lg:flex lg:items-stretch lg:overflow-x-auto [scrollbar-color:#99c066_transparent] [scrollbar-width:thin]
-[&::-webkit-scrollbar]:h-1.5
-[&::-webkit-scrollbar-track]:bg-transparent
-[&::-webkit-scrollbar-thumb]:rounded-full
-[&::-webkit-scrollbar-thumb]:bg-[#99c066]
-[&::-webkit-scrollbar-thumb:hover]:bg-[#5c733d]">
+                  <div className="grid w-full grid-cols-2 gap-3 pb-3 pt-2 lg:grid-cols-[repeat(auto-fill,minmax(220px,1fr))]">
                     {province.stores.map((store) => (
-                      <div
-                        key={store.properties.id}
-                        className="flex min-w-0 lg:w-[220px] lg:shrink-0"
-                      >
+                      <div key={store.properties.id} className="flex min-w-0">
                         <StoreCard
                           store={store.properties}
                           size="small"

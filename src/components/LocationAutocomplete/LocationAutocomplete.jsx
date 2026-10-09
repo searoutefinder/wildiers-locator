@@ -88,6 +88,7 @@ const LocationAutocomplete = ({ placeholder = "Zoek op locatie", onLocationChang
   }, [query]);
  
   const select = (item) => {
+    console.log(item)
     skipNextFetch.current = true; // a kiválasztott szöveg beírása ne indítson új keresést
     setQuery(item.text);
     onLocationChange({ text: item.text, coordinates: item.coordinates });
