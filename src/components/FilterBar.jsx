@@ -33,8 +33,8 @@ const FilterBar = ({
 
         {/* Mobile only: Selects live here, stacked full-width (desktop shows them in the right column) */}
         <div className="flex w-full flex-col gap-3 lg:hidden">
-          <MultiSelect label={t("brandPlaceholder")} value={selectedBrands} onChange={onBrandChange} options={brandOptions} getValue={(opt) => opt.id}/>
-          <MultiSelect label={t("specialtyPlaceholder")} value={specialty} onChange={onSpecialtyChange} options={specialtyOptions} getValue={(opt) => opt.id} />          
+          <MultiSelect single={true} label={t("brandPlaceholder")} value={selectedBrands} onChange={onBrandChange} options={brandOptions} getValue={(opt) => opt.id}/>
+          <MultiSelect single={true} label={t("specialtyPlaceholder")} value={specialty} onChange={onSpecialtyChange} options={specialtyOptions} getValue={(opt) => opt.id} />          
           <div className="flex w-full items-start gap-1.5">
             <img alt="" className="size-4 shrink-0" src="/icons/material-symbols/info.svg" />
             <p className="min-w-0 flex-1 text-xs text-[#161412]">{t("selectMessage")}</p>
@@ -67,8 +67,8 @@ const FilterBar = ({
       {/* Desktop only: the two Selects side-by-side in their own column */}
       <div className="hidden w-[400px] shrink-0 flex-col gap-2.5 lg:flex">
         <div className="flex w-full items-center gap-3">
-          <MultiSelect label={t("brandPlaceholder")} value={selectedBrands} onChange={onBrandChange} options={brandOptions} getValue={(opt) => opt.id}/>
-          <MultiSelect label={t("specialtyPlaceholder")} value={specialty} onChange={onSpecialtyChange} options={specialtyOptions} getValue={(opt) => opt.id}/>
+          <MultiSelect single={true} label={t("brandPlaceholder")} value={selectedBrands} onChange={onBrandChange} options={brandOptions} getValue={(opt) => opt.id}/>
+          <MultiSelect single={true} label={t("specialtyPlaceholder")} value={specialty} onChange={onSpecialtyChange} options={specialtyOptions} getValue={(opt) => opt.id}/>
         </div>
         <div className="flex items-center gap-1">
           <img alt="" className="size-4 shrink-0" src="/icons/material-symbols/info.svg" />

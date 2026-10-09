@@ -11,6 +11,7 @@ const SPECIALIZATION_CHECKS = {
 
 export const StoreLocatorProvider = ({ data, children }) => {
 
+  // States
   const [storesJSON, setStoresJSON] = useState({"type": "FeatureCollection", "features": []});  
   const [selectedStore, setSelectedStore] = useState(null);  
   const [selectedId, setSelectedId] = useState(null);
@@ -22,6 +23,18 @@ export const StoreLocatorProvider = ({ data, children }) => {
   const [selectedSpecializations, setSelectedSpecializations] = useState([]);
   const [initialLoad, setInitialLoad] = useState(true);
 
+  const EPSILON = 1e-9;
+  
+  // Helpers
+  const isSamePoint = (a, b, eps = EPSILON) => {
+    return (
+      Array.isArray(a) && Array.isArray(b) &&
+        Math.abs(a[0] - b[0]) < eps &&
+        Math.abs(a[1] - b[1]) < eps
+    );
+  }
+
+  // Memos
   const stores = useMemo(() => {
     return storesJSON;
   }, [storesJSON]);  
@@ -121,7 +134,12 @@ export const StoreLocatorProvider = ({ data, children }) => {
     const bounds = getBounds(filteredFeatures, {
       extraPoints: location?.coordinates ? [location.coordinates] : [],
     });
-    return bounds;
+    if(!bounds) { return; }
+    if(isSamePoint(bounds[0], bounds[1])) {
+      return;
+    }
+    
+      return bounds;
   }, [filteredFeatures]); 
 
   useEffect(() => {
@@ -180,7 +198,7 @@ export const StoreLocatorProvider = ({ data, children }) => {
   }), 
   [data, isFilterSet, selectedId, onlyXL, selectedBrands, selectedSpecializations, location, 
     stores, provinces, brands, specializations, filteredFeatures, initialLoad, resultBounds, selectedStore, selectedStoreId]);
- 
+
   return (
     <StoreLocatorContext.Provider value={value}>
       {children}

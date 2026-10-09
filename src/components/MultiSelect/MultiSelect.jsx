@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from "react";
 
-const MultiSelect = ({ label, value = [], onChange, options = [], getValue = (opt) => opt.name }) => {
+const MultiSelect = ({ label, value = [], onChange, options = [], getValue = (opt) => opt.name, single = false}) => {
 
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -14,6 +14,7 @@ const MultiSelect = ({ label, value = [], onChange, options = [], getValue = (op
   );
   const isSelected = (opt) => selected.includes(getValue(opt));
   
+  /*
   const toggle = (opt) => {
     const v = getValue(opt);
     const next = isSelected(opt)
@@ -24,6 +25,22 @@ const MultiSelect = ({ label, value = [], onChange, options = [], getValue = (op
 
     onChange?.(next, nextOptions, opt);
   };
+  */
+
+  const toggle = (opt) => {
+    const v = getValue(opt);
+
+    const next = single
+      ? (isSelected(opt) ? [] : [v])          // radio: lecseréli, újrakattintásra törli
+      : isSelected(opt)
+        ? selected.filter((x) => x !== v)
+        : [...selected, v];
+
+    const nextOptions = options.filter((o) => next.includes(getValue(o)));
+    onChange?.(next, nextOptions, opt);
+
+    if (single) setOpen(false);               // választás után bezárul
+  };  
  
   // Close on outside click
   useEffect(() => {
@@ -106,7 +123,7 @@ const MultiSelect = ({ label, value = [], onChange, options = [], getValue = (op
           ref={listRef}
           id={listId}
           role="listbox"
-          aria-multiselectable="true"
+          aria-multiselectable={!single}
           aria-label={label}
           className="
             absolute left-0 right-0 top-full z-30 mt-1 max-h-60 overflow-y-auto
@@ -142,7 +159,7 @@ const MultiSelect = ({ label, value = [], onChange, options = [], getValue = (op
                 {/* Checkbox indicator */}
                 <span
                   aria-hidden="true"
-                  className={`flex size-4 shrink-0 items-center justify-center rounded-sm border ${
+                  className={`flex size-4 shrink-0 items-center justify-center rounded-full border ${
                     sel ? "border-[#5c733d] bg-[#5c733d]" : "border-[#d6d3d1] bg-white"
                   }`}
                 >

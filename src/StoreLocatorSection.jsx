@@ -120,7 +120,7 @@ const StoreLocatorSection = () => {
     setSelectedStoreId(f.id);
   };
 
-  const onBrandChange = (a, options, c) => {
+  /*const onBrandChange = (a, options, c) => {
     if (options.length > 1) return;
     setSelectedBrands(options);
   };
@@ -128,7 +128,10 @@ const StoreLocatorSection = () => {
   const onSpecializationChange = (a, options, c) => {
     if (options.length > 1) return;
     setSelectedSpecializations(options);
-  };
+  };*/
+
+  const onBrandChange = (a, options) => setSelectedBrands(options);
+  const onSpecializationChange = (a, options) => setSelectedSpecializations(options);  
 
   const onLocationChange = (e) => {
     setLocation(e);
