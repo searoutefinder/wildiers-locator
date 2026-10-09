@@ -95,7 +95,7 @@ const getOpeningTimeForToday = (obj, timeZone = "Europe/Brussels") => {
   return obj[key];
 }
 
-const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, onClick }) => {
+const StoreCard = ({ store, size = "default", clickToLink = false, onRoutePlan, onTestRide, onLink, onClick }) => {
   const isSmall = size === "small";
   const isCarousel = size === "carousel";
   const showActions = size === "default";
@@ -115,7 +115,7 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
     : "shadow-[0_12px_16px_-4px_rgba(0,0,0,0.08),0_4px_6px_-2px_rgba(0,0,0,0.03)]";
 
   const onClickHandler = (e) => {
-    onClick(e, store);
+    onClick?.(e, store);
   }
 
   const onRouteHandler = (e) => {
@@ -127,7 +127,7 @@ const StoreCard = ({ store, size = "default", onRoutePlan, onTestRide, onLink, o
   }
   return (
     <div
-      onClick={isSmall ? onLinkHandler : onClickHandler}
+      onClick={clickToLink ? onLinkHandler : onClickHandler}
       className={`cursor-pointer relative flex flex-col items-start gap-4 rounded-lg border-solid bg-white 
         ${ isCarousel ? "w-[180px] shrink-0" : "w-full min-w-0" } 
         ${ highlighted

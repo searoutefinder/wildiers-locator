@@ -72,6 +72,7 @@ return (
                         <StoreCard
                           store={store.properties}
                           size="small"
+                          clickToLink={true}
                           onLink={onStoreLink}
                           onClick={() => {}}
                         />
