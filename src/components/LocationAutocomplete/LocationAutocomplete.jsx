@@ -139,7 +139,7 @@ const LocationAutocomplete = ({ placeholder = "Zoek op locatie", onLocationChang
         onBlur={() => setIsOpen(false)}
         placeholder={placeholder}
         autoComplete="off"
-        className="w-full flex-1 bg-transparent text-sm text-[#161412] placeholder:text-black/60 focus:outline-none"
+        className="w-full flex-1 bg-transparent text-base text-[#161412] placeholder:text-black/60 focus:outline-none"
       />
  
       {isOpen && (
