@@ -1,5 +1,4 @@
 // api/stores.js — Vercel serverless function
-// Lekéri a Webflow "stores" kollekció publikált elemeit, és a store locator saját sémájára alakítja.
 
 import { fetchAllLiveItems, isPublished, missingEnv } from "./webflow.js";
 
@@ -46,7 +45,8 @@ export function mapStore(item) {
     is_xl_store: Boolean(fd["section-header-xl-store"]),
     opening_times,
     images,
-    url: fd.slug ? `${process.env.STORE_PAGE_BASE_URL ?? ""}/${fd.slug}` : "",
+    storeurl: `${process.env.BASE_URL ?? ""}/${fd.slug}`,
+    url: fd.slug ? `${process.env.BASE_URL ?? ""}/${fd.slug}` : "",
     brands: fd.brands ?? [], // Webflow reference ID-k — megegyeznek az /api/brands "id" értékeivel
   };
 }
@@ -66,9 +66,9 @@ export default async function handler(req, res) {
     const stores = items
       .filter(isPublished)
       .map(mapStore)
-      .filter((s) => s.coordinates) // koordináta nélkül nem tehető térképre
+      .filter((s) => s.coordinates)
       .sort((a, b) => a.name.trim().localeCompare(b.name.trim(), "nl", { sensitivity: "base" }))
-      .map((s, i) => ({ ...s, store_num_id: i + 1 })); // 1-től induló sorszám a rendezett sorrend szerint
+      .map((s, i) => ({ ...s, store_num_id: i + 1 }));
 
     res.setHeader("Cache-Control", "s-maxage=600, stale-while-revalidate=3600");
     return res.status(200).json(stores);
