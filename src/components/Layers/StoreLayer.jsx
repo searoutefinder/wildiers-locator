@@ -57,6 +57,7 @@ const StoreLayer = ({map, stores}) => {
         "type": "symbol",
         "source": "stores-src",
         "layout": {
+          "text-allow-overlap": true,
           "text-field": ["get", "store_num_id"],
           "text-size": 12,
           "text-offset": [

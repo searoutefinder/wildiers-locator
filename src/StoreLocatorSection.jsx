@@ -264,7 +264,7 @@ const StoreLocatorSection = () => {
           <div className="flex flex-col gap-6">
 
             {/* Térkép + carousel egymásra rétegezve (grid, egy cellában) */}
-            <div className="-mx-5 grid h-[600px] grid-cols-1 overflow-hidden">
+            <div className="-mx-5 grid h-[650px] grid-cols-1 overflow-hidden">
 
               <div className="min-h-0 min-w-0 [grid-area:1/1]">
                 <MapPanel isDesktop={false} bottomInset={CAROUSEL_INSET} showPopup={false} />
