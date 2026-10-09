@@ -3,6 +3,7 @@ import { useStoreLocator } from "../context/StoreLocatorContext";
 import LocationAutocomplete from "./LocationAutocomplete/LocationAutocomplete";
 import GeolocateButton from "./GeolocateButton/GeolocateButton";
 import MultiSelect from "./MultiSelect/MultiSelect";
+import Tooltip from '../components/Tooltip/Tooltip'
 
 // Internationalization
 import { t } from "../i18n";
@@ -57,10 +58,12 @@ const FilterBar = ({
             </span>
           
           </div>
-          <div className="flex min-w-0 flex-1 items-center gap-1">
-            <img alt="" className="size-4 shrink-0" src="/icons/material-symbols/info.svg" />
-            <p className="min-w-0 text-xs text-[#161412]">{t("whatsAnXl")}</p>
-          </div>
+          <Tooltip label={t("xlDescription")} placement="bottom">
+            <div className="cursor-pointer flex min-w-0 flex-1 items-center gap-1">
+              <img alt="" className="size-4 shrink-0" src="/icons/material-symbols/info.svg" />           
+                <p className="min-w-0 text-xs text-[#161412]">{t("whatsAnXl")}</p>            
+            </div>
+          </Tooltip>
         </div>
       </div>
 
