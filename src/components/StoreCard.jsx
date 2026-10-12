@@ -131,7 +131,7 @@ const StoreCard = ({ store, size = "default", clickToLink = false, onRoutePlan, 
       className={`cursor-pointer relative flex flex-col items-start gap-4 rounded-lg border-solid bg-white 
         ${ isCarousel ? "w-[180px] shrink-0" : "w-full min-w-0" } 
         ${ highlighted
-          ? `border-2 border-[#99c066] bg-gradient-to-r from-[#ebf2e0]/50 to-[#ebf2e0]/50 ${highlightedShadow}`
+          ? `border-1 border-[#99c066] bg-gradient-to-r from-[#ebf2e0]/50 to-[#ebf2e0]/50 ${highlightedShadow}`
           : "border border-[#d6d3d1]"
         }
         ${ isSmall || isCarousel ? "overflow-clip" : ""}` }

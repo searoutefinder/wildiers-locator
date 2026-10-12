@@ -43,7 +43,7 @@ const FilterBar = ({
         </div>
 
         <div className="flex w-full flex-col gap-2 lg:flex-row lg:items-center lg:gap-3">
-          <div className="flex shrink-0 items-center gap-3">
+          <div className="flex shrink-0 items-center gap-2">
             
             <label className="flex items-center gap-2 text-sm text-black cursor-pointer">
               <Switch 

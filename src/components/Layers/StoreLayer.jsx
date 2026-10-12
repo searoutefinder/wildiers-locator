@@ -31,6 +31,12 @@ const StoreLayer = ({map, stores}) => {
       ["==", ["get", "id"], id ?? ""], 1,
       0
     ]);
+
+    map.setPaintProperty("stores-lyr", "text-color", [
+      "case",
+      ["==", ["get", "id"], id ?? ""], "#000000",
+      "#FFFFFF"
+    ]);    
     
     setSelectedId(id); 
     setSelectedStoreId(id);

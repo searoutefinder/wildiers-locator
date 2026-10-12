@@ -171,7 +171,7 @@ const StoreLocatorSection = () => {
       {/* Heading (same 48px/18px type scale on mobile and desktop) */}
       <div className="flex max-w-[768px] flex-col gap-2">
         <h2 className="text-[48px] font-bold leading-[1.2] text-[#161412]">
-          {t("heading")} <span className="text-[#5c733d]">{t("headingHighlight")}</span> {t("headingSuffix")}          
+          {t("heading")} {t("headingWildiers")} <span className="text-[#5c733d]">{t("headingHighlight")}</span> {t("headingSuffix")}          
         </h2>
         <p className="text-lg text-[#0c0a09]">
           {t("introPrefix")} <span className="font-semibold">{stores.features.length}</span> {t("introSuffix")}
