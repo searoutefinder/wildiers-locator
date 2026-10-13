@@ -317,7 +317,7 @@ const StoreLocatorSection = () => {
                 className="flex h-10 w-full cursor-pointer items-center justify-center gap-2 rounded-md border border-[#e7e5e4] bg-white px-4 py-2 text-base text-[#161412]"
               >
                 <img alt="" className="size-4" src="/icons/material-symbols/store.svg" />
-                Toon alle {stores.features.length} winkels
+                {t("showAll", {count: stores.features.length})}
               </button>
             )}
 
