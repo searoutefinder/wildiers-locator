@@ -53,6 +53,7 @@ const StoreLocatorSection = () => {
   const cardRefs = useRef(new Map());
   const selectedFromListRef = useRef(false);
   const carouselRef = useRef(null);
+  const mapWrapperRef = useRef(null);
 
   // Helpers
 
@@ -95,6 +96,16 @@ const StoreLocatorSection = () => {
     setSelectedId(null);
     setSelectedStoreId(null);    
   }, [onlyXL, location, selectedBrands, selectedSpecializations]);
+
+  // Mobilon lokáció kiválasztásakor (keresés vagy saját pozíció) a térkép tetejét a képernyő tetejére görgetjük.
+  // A késleltetés megvárja, hogy a billentyűzet eltűnjön és a ResultsBar kinyíljon (0.25 s animáció).
+  useEffect(() => {
+    if (isDesktop || location == null) return;
+    const timer = setTimeout(() => {
+      mapWrapperRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 350);
+    return () => clearTimeout(timer);
+  }, [location]);
 
   useEffect(() => {
     // Kártyára kattintottak, nem görgetünk
@@ -261,7 +272,7 @@ const StoreLocatorSection = () => {
           <div className="flex flex-col gap-6">
 
             {/* Térkép + carousel egymásra rétegezve (grid, egy cellában) */}
-            <div className="-mx-5 grid h-[650px] grid-cols-1 overflow-hidden">
+            <div ref={mapWrapperRef} className="-mx-5 grid h-[650px] scroll-mt-0 grid-cols-1 overflow-hidden">
 
               <div className="min-h-0 min-w-0 [grid-area:1/1]">
                 <MapPanel isDesktop={false} bottomInset={CAROUSEL_INSET} showPopup={false} />
