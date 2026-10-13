@@ -23,7 +23,7 @@
      inkscape:deskcolor="#d1d1d1"
      showguides="true"
      inkscape:zoom="9.886868"
-     inkscape:cx="31.253578"
+     inkscape:cx="31.30415"
      inkscape:cy="19.065694"
      inkscape:window-width="1920"
      inkscape:window-height="1001"
@@ -211,19 +211,19 @@
        y="0"
        style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:16px;font-family:Inter;-inkscape-font-specification:'Inter Bold';fill:#ff0000">3</tspan></text>
   <path
-     style="fill:#ffffff;stroke:#ffffff;stroke-width:1.05592;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
+     style="fill:none;stroke:#000000;stroke-width:1.05592;stroke-linecap:round;stroke-dasharray:none;stroke-opacity:1"
      d="m 28.745812,11.206824 h 9.692472"
      id="path4" />
   <path
-     style="fill:none;stroke:#ffffff;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     style="fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
      d="m 28.795714,13.338628 -0.856586,3.361431 h 11.262716 l -0.858237,-3.361431 z"
      id="path18" />
   <path
-     style="display:inline;fill:none;stroke:#ffffff;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     style="display:inline;fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
      d="m 28.795714,16.700059 h 5.399745 v 4.318007 h -5.399745 z"
      id="path19" />
   <path
-     style="display:inline;fill:#ffffff;stroke:#ffffff;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     style="display:inline;fill:none;stroke:#000000;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
      d="m 38.343607,16.700059 v 4.318007"
      id="path20" />
 </svg>

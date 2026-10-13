@@ -136,6 +136,7 @@ const StoreCard = ({ store, size = "default", clickToLink = false, onRoutePlan, 
         }
         ${ isSmall || isCarousel ? "overflow-clip" : ""}` }
     >
+      {/* This is the row holding the image */}
       <div className={`relative flex w-full items-start overflow-clip rounded-t-md ${isSmall ? "h-[100px]" : "h-[130px]"}`}>
         
         <div className="relative h-full flex-1">
@@ -174,15 +175,18 @@ const StoreCard = ({ store, size = "default", clickToLink = false, onRoutePlan, 
       </div>
 
       <div className="flex w-full min-w-0 flex-col gap-4 px-4 pb-4">
-        <div className="flex w-full min-w-0 flex-col gap-3">
+        <div className={`flex w-full min-w-0 flex-col ${isSmall ? "gap-2" : "gap-3"}`}>
 
-          <div className="flex w-full min-w-0 gap-2 items-center">
+          <div className={`flex w-full min-w-0 ${isSmall ? "flex-col items-start gap-1" : "items-center gap-2"} `}>
+            
+            {/* This is the clickable name of the store */}
             <button
               onClick={onLinkHandler} 
               className="cursor-pointer block max-w-full truncate text-sm font-medium text-[#161412] underline"
             >
               {name}
             </button>
+            
             {xlStore && isSmall ? (
               <div className="flex h-6 shrink-0 items-center justify-center gap-1 rounded-full bg-[#161412] px-2 py-0.5">
                 <img alt="" className="size-4" src="/icons/material-symbols/store-white.svg" />
@@ -197,17 +201,22 @@ const StoreCard = ({ store, size = "default", clickToLink = false, onRoutePlan, 
             ) : ('')}            
           </div>
 
+          {/* This row holds the distance and the opening times next to each other */}
           <div className="flex items-center gap-2">
-            {distance_km && <Distance distanceKm={distance_km} />}
+            {
+              distance_km && 
+                <Distance distanceKm={distance_km} />
+            }
             <OpeningHours
               status={getOpeningTimeForToday(opening_times) !== "gesloten" ? "open" : "gesloten"}
               statusDetail={getOpeningTimeForToday(opening_times)} 
             />
           </div>          
-          
+
+          <TagsBadgeRow tags={store.tags} />  
         </div>
 
-        <TagsBadgeRow tags={store.tags} />
+        
 
         {showActions && (
 

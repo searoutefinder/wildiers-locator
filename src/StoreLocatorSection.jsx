@@ -11,6 +11,7 @@ import ResultsBar from "./components/ResultsBar";
 import StoreCard from "./components/StoreCard";
 import MapPanel from "./components/MapPanel";
 import ProvinceAccordion from "./components/ProvinceAccordion";
+import NoResults from "./components/NoResults/NoResults";
 
 // Internationalization
 import { t } from "./i18n";
@@ -45,6 +46,7 @@ const StoreLocatorSection = () => {
   } = useStoreLocator();
 
   const isDesktop = useMediaQuery("(min-width: 1024px)");
+  const hasResults = filteredFeatures?.features?.length > 0;
 
   // Refs
   const listRef = useRef(null);
@@ -119,16 +121,6 @@ const StoreLocatorSection = () => {
     setSelectedId(f.id);
     setSelectedStoreId(f.id);
   };
-
-  /*const onBrandChange = (a, options, c) => {
-    if (options.length > 1) return;
-    setSelectedBrands(options);
-  };
-
-  const onSpecializationChange = (a, options, c) => {
-    if (options.length > 1) return;
-    setSelectedSpecializations(options);
-  };*/
 
   const onBrandChange = (a, options) => setSelectedBrands(options);
   const onSpecializationChange = (a, options) => setSelectedSpecializations(options);  
@@ -225,25 +217,27 @@ const StoreLocatorSection = () => {
             {/* Sidebar */}
             <div className="flex h-[556px] w-[360px] shrink-0 flex-col gap-6 overflow-y-auto">
 
-              <div ref={listRef} className="store-list relative flex min-h-0 flex-col gap-3 overflow-y-auto pr-2 [scrollbar-color:#99c066_transparent] [scrollbar-width:thin]
-            [&::-webkit-scrollbar]:w-1.5
-            [&::-webkit-scrollbar-track]:bg-transparent
-            [&::-webkit-scrollbar-thumb]:rounded-full
-            [&::-webkit-scrollbar-thumb]:bg-[#99c066]
-            [&::-webkit-scrollbar-thumb:hover]:bg-[#5c733d]">
-                {filteredFeatures?.features?.map((store) => (
-                  <div key={store.properties.id} ref={registerCard(store.properties.id)}>
-                    <StoreCard
-                      store={{ ...store.properties, highlighted: store.properties.id === selectedStoreId }}
-                      size="default"
-                      onRoutePlan={onRoutePlan}
-                      onTestRide={onTestRide}
-                      onClick={onCardClick}
-                      onLink={onStoreLink}
-                    />
-                  </div>
-                ))}
-              </div>
+              {hasResults ? (
+                <div ref={listRef} className="store-list relative flex min-h-0 flex-col gap-3 overflow-y-auto pr-2 [scrollbar-color:#99c066_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#99c066] [&::-webkit-scrollbar-thumb:hover]:bg-[#5c733d]">
+                  {filteredFeatures?.features?.map((store) => (
+                    <div key={store.properties.id} ref={registerCard(store.properties.id)}>
+                      <StoreCard
+                        store={{ ...store.properties, highlighted: store.properties.id === selectedStoreId }}
+                        size="default"
+                        onRoutePlan={onRoutePlan}
+                        onTestRide={onTestRide}
+                        onClick={onCardClick}
+                        onLink={onStoreLink}
+                      />
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <NoResults 
+                  className="min-h-0 flex-1"
+                  onRemoveAll={clearAllFilters}
+                />
+              )}
 
               {isFilterSet && (
                 <button
@@ -274,27 +268,33 @@ const StoreLocatorSection = () => {
               </div>
 
               <div className="pointer-events-none z-10 min-w-0 self-end bg-gradient-to-b from-transparent to-white pb-4 pt-10 [grid-area:1/1]">
-                <div
-                  ref={carouselRef}
-                  className="pointer-events-auto relative flex items-stretch snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-                >
-                  {filteredFeatures?.features?.map((store) => (
-                    <div
-                      key={store.properties.id}
-                      ref={registerCard(store.properties.id)}
-                      className="flex shrink-0 snap-center"
-                    >
-                      <StoreCard
-                        store={{ ...store.properties, highlighted: store.properties.id === selectedStoreId }}
-                        size="small"
-                        onRoutePlan={onRoutePlan}
-                        onTestRide={onTestRide}
-                        onClick={onCardClick}
-                        onLink={onStoreLink}
-                      />
-                    </div>
-                  ))}
-                </div>
+                {hasResults ? (
+                  <div
+                    ref={carouselRef}
+                    className="pointer-events-auto relative flex items-stretch snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-4 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  >
+                    {filteredFeatures?.features?.map((store) => (
+                      <div
+                        key={store.properties.id}
+                        ref={registerCard(store.properties.id)}
+                        className="flex shrink-0 snap-center"
+                      >
+                        <StoreCard
+                          store={{ ...store.properties, highlighted: store.properties.id === selectedStoreId }}
+                          size="small"
+                          onRoutePlan={onRoutePlan}
+                          onTestRide={onTestRide}
+                          onClick={onCardClick}
+                          onLink={onStoreLink}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="pointer-events-auto px-4">
+                    <NoResults className="h-[200px]" onRemoveAll={clearAllFilters}/>
+                  </div>
+                )}                
               </div>
 
             </div>
