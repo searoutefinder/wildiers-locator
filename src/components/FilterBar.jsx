@@ -43,9 +43,9 @@ const FilterBar = ({
         </div>
 
         <div className="flex w-full flex-col gap-2 lg:flex-row lg:items-center lg:gap-3">
-          <div className="flex shrink-0 items-center gap-2">
+          <div className="flex min-w-0 lg:shrink-0 items-center gap-2">
             
-            <label className="flex items-center gap-2 text-sm text-black cursor-pointer">
+            <label className="flex min-w-0 items-center gap-2 text-sm text-black cursor-pointer">
               <Switch 
                 checked={onlyXL} 
                 onChange={onXlToggleChange} 
@@ -53,8 +53,8 @@ const FilterBar = ({
               {t("xlSwitchText")}
             </label>
 
-            <span className="cursor-pointer flex h-6 items-center justify-center rounded-full bg-[#161412] px-2 py-0.5 text-sm font-semibold text-white">
-              XL Store
+            <span className="min-w-0 cursor-pointer flex h-6 items-center justify-center rounded-full bg-[#161412] px-2 py-0.5 text-sm font-semibold text-white">
+              {t("xlButtonStore")}
             </span>
           
           </div>

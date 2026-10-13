@@ -31,6 +31,7 @@
   "shopFoundTxt": "winkel gevonden",
   "xlDescription": "Een XL-winkel is een grotere Wildiers-winkel met ons meest complete aanbod. Je vindt er e-bikes, bakfietsen, sportfietsen, mountainbikes en andere gespecialiseerde modellen die je ter plaatse kan bekijken, vergelijken en testen. Ideaal voor wie graag verschillende fietsen naast elkaar ziet en uitgebreid de tijd wil nemen om de juiste keuze te maken.",
   "noResults": "Geen winkels gevonden",
-  "locationLoading": "Locatie zoeken…"
+  "locationLoading": "Locatie zoeken…",
+  "xlButtonStore": "XL Winkel"
 
 }

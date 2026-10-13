@@ -16,7 +16,7 @@
   "specialtyPlaceholder": "Spécialité",
   "selectMessage": "Filtrez par marque ou spécialité disponible dans le showroom.",
   "whatsAnXl": "Qu'est-ce qu'un magasin XL ?",
-  "xlSwitchText": "Afficher uniquement les magasins XL",
+  "xlSwitchText": "Afficher uniquement \nles magasins XL",
   "directionsBtnText": "Itinéraire",
   "testRideBtnText": "Planifiez votre essai",
   "allStoresPerProvinceText": "Tous les magasins Wildiers par province",
@@ -31,5 +31,6 @@
   "shopFoundTxt": "magasin trouvé",
   "xlDescription": "Un magasin XL est un magasin Wildiers plus grand, avec notre offre la plus complète. Vous y trouverez des vélos électriques, des vélos cargo, des vélos de sport, des VTT et d'autres modèles spécialisés que vous pouvez découvrir, comparer et essayer sur place. Idéal si vous aimez voir différents vélos côte à côte et prendre le temps de faire le bon choix.",
   "noResults": "Aucun magasin n'a été trouvé",
-  "locationLoading": "Localisation en cours…"
+  "locationLoading": "Localisation en cours…",
+  "xlButtonStore": "Magasin XL"
 }

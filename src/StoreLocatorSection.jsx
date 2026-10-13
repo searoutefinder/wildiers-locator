@@ -226,7 +226,7 @@ const StoreLocatorSection = () => {
           <div className="flex w-full items-start gap-2">
 
             {/* Sidebar */}
-            <div className="flex h-[556px] w-[360px] shrink-0 flex-col gap-6 overflow-y-auto">
+            <div className="flex h-[80vh] w-[360px] shrink-0 flex-col gap-6 overflow-y-auto">
 
               {hasResults ? (
                 <div ref={listRef} className="store-list relative flex min-h-0 flex-col gap-3 overflow-y-auto pr-2 [scrollbar-color:#99c066_transparent] [scrollbar-width:thin] [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-[#99c066] [&::-webkit-scrollbar-thumb:hover]:bg-[#5c733d]">
@@ -263,7 +263,7 @@ const StoreLocatorSection = () => {
             </div>
 
             {/* Map */}
-            <div className="h-[556px] min-w-0 flex-1">
+            <div className="h-[80vh] min-w-0 flex-1">
               <MapPanel isDesktop={true} showPopup={true} />
             </div>
 
