@@ -288,7 +288,7 @@ const StoreLocatorSection = () => {
                       <div
                         key={store.properties.id}
                         ref={registerCard(store.properties.id)}
-                        className="flex shrink-0 snap-center"
+                        className="flex w-[220px] shrink-0 snap-center"
                       >
                         <StoreCard
                           store={{ ...store.properties, highlighted: store.properties.id === selectedStoreId }}

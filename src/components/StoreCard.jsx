@@ -59,7 +59,7 @@ const OpeningHours = ({ status, statusDetail }) => {
   if (!status) return null;
   
   return (
-    <div className="flex items-center gap-1 whitespace-nowrap">
+    <div className="flex min-w-0 items-center gap-1 whitespace-nowrap">
       <p className={`text-xs font-medium ${status === "open" ? "text-[#7a9a52]" : "text-[#c62828]"}`}>
         {status === "open" ? t("storeOpen") : t("storeClosed")}
       </p>
@@ -203,7 +203,7 @@ const StoreCard = ({ store, size = "default", clickToLink = false, onRoutePlan, 
           </div>
 
           {/* This row holds the distance and the opening times next to each other */}
-          <div className="flex items-center gap-2">
+          <div className="flex min-w-0 items-center gap-2">
             {
               distance_km && 
                 <Distance distanceKm={distance_km} />
