@@ -118,7 +118,7 @@ const GeolocateButton = ({ accessToken = import.meta.env.VITE_MAPBOX_TOKEN, clas
       aria-label="Gebruik mijn locatie"
       aria-busy={loading}
       title={error ?? undefined}
-      className="cursor-pointer flex h-10 w-10 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-[#99c066] bg-[#99c066] p-2 text-sm font-medium uppercase text-black lg:w-auto lg:px-4"
+      className="text-[#161412] cursor-pointer flex h-10 w-10 shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-[#99c066] bg-[#99c066] p-2 text-sm font-medium uppercase text-black lg:w-auto lg:px-4"
     >
       <img 
         alt=""
@@ -126,7 +126,7 @@ const GeolocateButton = ({ accessToken = import.meta.env.VITE_MAPBOX_TOKEN, clas
         src="/icons/material-symbols/my_location.svg" 
       />
       <span className="hidden lg:inline">
-        {loading ? "Locatie zoeken…" : t("locationBtnText")}
+        {loading ? t("locationLoading") : t("locationBtnText")}
       </span>
     </button>    
   );  

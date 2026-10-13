@@ -27,6 +27,7 @@ const LocationAutocomplete = ({ placeholder = "Zoek op locatie", onLocationChang
   const skipNextFetch = useRef(false);
   const listId = useId();
  
+  const inputRef = useRef(null);
   
   useEffect(() => {
     if (location == null) {
@@ -95,6 +96,7 @@ const LocationAutocomplete = ({ placeholder = "Zoek op locatie", onLocationChang
     setSuggestions([]);
     setIsOpen(false);
     setActiveIndex(-1);
+    inputRef.current?.blur();
   };
  
   const onKeyDown = (e) => {
@@ -127,6 +129,7 @@ const LocationAutocomplete = ({ placeholder = "Zoek op locatie", onLocationChang
  
       <input
         type="text"
+        ref={inputRef}
         role="combobox"
         aria-autocomplete="list"
         aria-expanded={isOpen}

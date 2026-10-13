@@ -150,7 +150,7 @@ const MultiSelect = ({ label, value = [], onChange, options = [], getValue = (op
                 onMouseEnter={() => setActiveIndex(idx)}
                 className={`mx-1 flex cursor-pointer items-center gap-2 rounded px-2 py-2 text-sm transition-colors ${
                   sel
-                    ? `${active ? "bg-[#99c066]" : "bg-[#99c066]"} font-medium text-[#FFF]`
+                    ? `${active ? "bg-[#99c066]" : "bg-[#99c066]"} font-medium text-[#161412]`
                     : active
                       ? "bg-[#99c066]/25 text-[#161412]"
                       : "text-[#161412]"

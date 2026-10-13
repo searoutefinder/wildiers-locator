@@ -175,7 +175,8 @@ const StoreCard = ({ store, size = "default", clickToLink = false, onRoutePlan, 
       </div>
 
       <div className="flex w-full min-w-0 flex-col gap-4 px-4 pb-4">
-        <div className={`flex w-full min-w-0 flex-col ${isSmall ? "gap-2" : "gap-3"}`}>
+
+        <div className={`flex w-full min-w-0 flex-col gap-2`}>
 
           <div className={`flex w-full min-w-0 ${isSmall ? "flex-col items-start gap-1" : "items-center gap-2"} `}>
             
@@ -216,11 +217,7 @@ const StoreCard = ({ store, size = "default", clickToLink = false, onRoutePlan, 
           <TagsBadgeRow tags={store.tags} />  
         </div>
 
-        
-
-        {showActions && (
-
-          
+        {showActions && (          
           <div className="flex w-full items-start gap-2">
             <button
               type="button"
@@ -239,7 +236,6 @@ const StoreCard = ({ store, size = "default", clickToLink = false, onRoutePlan, 
               <span className="whitespace-nowrap text-base text-black">{t("testRideBtnText")}</span>
             </button>
           </div>
-
         )}
 
       </div>
