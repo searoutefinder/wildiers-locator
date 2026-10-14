@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { useStoreLocator } from "../../context/StoreLocatorContext";
 
 // Internationalization
-import { t } from "../../i18n";
+import { t, locale } from "../../i18n";
 
 // Helpers
 
@@ -107,7 +107,7 @@ export const useGeolocate = ({
 
 const GeolocateButton = ({ accessToken = import.meta.env.VITE_MAPBOX_TOKEN, className = "" }) => {
   
-    const { locate, status, error } = useGeolocate({ accessToken });
+  const { locate, status, error } = useGeolocate({ accessToken, language: locale });
   const loading = status === "loading";
  
   return (    

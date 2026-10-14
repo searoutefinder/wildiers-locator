@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState } from "react";
+import { locale } from "../../i18n";
 import { useStoreLocator } from "../../context/StoreLocatorContext";
 
 const MAPBOX_TOKEN = import.meta.env.VITE_MAPBOX_TOKEN;
@@ -59,7 +60,7 @@ const LocationAutocomplete = ({ placeholder = "Zoek op locatie", onLocationChang
         autocomplete: "true",
         limit: "3",
         country: "be",
-        language: "nl",
+        language: locale,
         access_token: MAPBOX_TOKEN,
       });
       try {
@@ -89,7 +90,6 @@ const LocationAutocomplete = ({ placeholder = "Zoek op locatie", onLocationChang
   }, [query]);
  
   const select = (item) => {
-    console.log(item)
     skipNextFetch.current = true; // a kiválasztott szöveg beírása ne indítson új keresést
     setQuery(item.text);
     onLocationChange({ text: item.text, coordinates: item.coordinates });
