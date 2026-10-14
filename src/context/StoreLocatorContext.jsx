@@ -1,4 +1,5 @@
 import { createContext, useContext, useMemo, useState, useEffect } from "react";
+import { t } from "../i18n";
 import { sortByDistance } from "../utils/sortByDistance";
 import { getBounds } from "../utils/getBounds";
 
@@ -24,7 +25,7 @@ export const StoreLocatorProvider = ({ data, children }) => {
   const [initialLoad, setInitialLoad] = useState(true);
 
   const EPSILON = 1e-9;
-  
+
   // Helpers
   const isSamePoint = (a, b, eps = EPSILON) => {
     return (
@@ -72,8 +73,8 @@ export const StoreLocatorProvider = ({ data, children }) => {
 
   const specializations = useMemo(() => {
     return [
-      {"id": "sportbike center", "name": "Sport Bikes"},
-      {"id": "cargo", "name": "Cargo Bikes"}
+      {"id": "sportbike center", "name": t("sportBikes")},
+      {"id": "cargo", "name": t("cargoBikes")}
     ];
   }, []); 
 

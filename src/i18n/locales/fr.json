@@ -35,5 +35,7 @@
   "xlButtonStore": "Magasin XL",
   "mapCtrlScroll": "Utilisez ctrl + molette pour zoomer sur la carte",
   "mapCmdScroll": "Utilisez ⌘ + molette pour zoomer sur la carte",
-  "mapTwoFingers": "Utilisez deux doigts pour déplacer la carte"  
+  "mapTwoFingers": "Utilisez deux doigts pour déplacer la carte",
+  "sportBikes": "Vélos de sport",
+  "cargoBikes": "Vélos cargo"    
 }

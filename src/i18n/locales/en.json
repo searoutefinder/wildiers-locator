@@ -35,6 +35,8 @@
   "xlButtonStore": "XL Store",
   "mapCtrlScroll": "Use ctrl + scroll to zoom the map",
   "mapCmdScroll": "Use ⌘ + scroll to zoom the map",
-  "mapTwoFingers": "Use two fingers to move the map"  
+  "mapTwoFingers": "Use two fingers to move the map",
+  "sportBikes": "Sports Bikes",
+  "cargoBikes": "Cargo Bikes"    
 
 }
