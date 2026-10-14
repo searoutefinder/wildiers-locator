@@ -352,8 +352,3 @@ To check the API after a deploy, open `https://<your-deployment>/api/stores` in 
 ## Notes and caveats
 
 - **Coordinate order.** The API returns `[lat, lng]`. `StoreLocatorContext` reverses it to `[lng, lat]` with `Array.prototype.reverse()`, which mutates the fetched data in place. Running that effect twice on the same data (e.g. in React Strict Mode, which is currently not enabled in `main.jsx`) would flip the coordinates back.
-- **`src/assets.js`** contains Figma MCP asset URLs that expire about 7 days after they were generated. `StoreCard` still imports `imgStoreThumb2` from it as a default value. The other icons are served from `public/icons/`.
-- **`src/components/api/stores.js`** and **`src/utils/getBrands.js`** are not used anywhere and can be removed. The former refers to `VITE_STORES_URL_*` variables that are not part of the current setup.
-- **Specialty labels** (`"Sport Bikes"`, `"Cargo Bikes"`) are hard-coded in English in the context and are not translated yet.
-- **Geocoding language** is fixed to Dutch (`language: "nl"`) in both the search box and the reverse geocoding. The geolocation error messages in `GeolocateButton.jsx` are hard-coded in Dutch as well.
-- **Mapbox attribution.** `index.css` hides the Mapbox logo and attribution (`.mapboxgl-ctrl-logo`, `.mapboxgl-ctrl-attrib`). Mapbox's terms require both on maps that use Mapbox styles or data. They can be moved to another corner, or the attribution can be made compact, but not removed.
