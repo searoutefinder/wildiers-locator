@@ -53,7 +53,7 @@ const FilterBar = ({
               {t("xlSwitchText")}
             </label>
 
-            <span className="min-w-0 cursor-pointer flex h-6 items-center justify-center rounded-full bg-[#161412] px-2 py-0.5 text-sm font-semibold text-white">
+            <span className="shrink-0 cursor-pointer flex h-6 items-center justify-center rounded-full bg-[#161412] px-2 py-0.5 text-sm font-semibold text-white">
               {t("xlButtonStore")}
             </span>
           
