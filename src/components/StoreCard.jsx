@@ -174,9 +174,9 @@ const StoreCard = ({ store, size = "default", clickToLink = false, onRoutePlan, 
 
       </div>
 
-      <div className="flex w-full min-w-0 flex-col gap-4 px-4 pb-4">
+      <div className={`flex w-full min-w-0 flex-col gap-4 px-4 pb-4 ${isSmall ? "flex-1" : ""}`}>
 
-        <div className={`flex w-full min-w-0 flex-col gap-2`}>
+        <div className={`flex w-full min-w-0 flex-col gap-2 ${isSmall ? "flex-1" : ""}`}>
 
           <div className={`flex w-full min-w-0 ${isSmall ? "flex-col items-start gap-1" : "items-center gap-2"} `}>
             
@@ -202,19 +202,23 @@ const StoreCard = ({ store, size = "default", clickToLink = false, onRoutePlan, 
             ) : ('')}            
           </div>
 
-          {/* This row holds the distance and the opening times next to each other */}
-          <div className="flex min-w-0 items-center gap-2">
-            {
-              distance_km && 
-                <Distance distanceKm={distance_km} />
-            }
-            <OpeningHours
-              status={getOpeningTimeForToday(opening_times) !== "gesloten" ? "open" : "gesloten"}
-              statusDetail={getOpeningTimeForToday(opening_times)} 
-            />
-          </div>          
+          {/* Opening times + tags: on the small card they are pushed to the bottom */}
+          <div className={`flex w-full min-w-0 flex-col gap-2 ${isSmall ? "mt-auto" : ""}`}>
 
-          <TagsBadgeRow tags={store.tags} />  
+            {/* This row holds the distance and the opening times next to each other */}
+            <div className="flex min-w-0 items-center gap-2">
+              {
+                distance_km &&
+                  <Distance distanceKm={distance_km} />
+              }
+              <OpeningHours
+                status={getOpeningTimeForToday(opening_times) !== "gesloten" ? "open" : "gesloten"}
+                statusDetail={getOpeningTimeForToday(opening_times)}
+              />
+            </div>
+
+            <TagsBadgeRow tags={store.tags} />
+          </div>
         </div>
 
         {showActions && (          
